@@ -1,7 +1,23 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:photo_lab/src/application/warmup/app_warmup_notifier.dart';
+import 'package:photo_lab/src/application/authentication/providers.dart';
+import 'package:photo_lab/src/application/user/providers.dart';
+import 'package:photo_lab/src/application/warmup/controllers/app_warmup_controller.dart';
+import 'package:photo_lab/src/application/warmup/services/app_warmup_service.dart';
 
-final appWarmupNotifierProvider =
-    StateNotifierProvider<AppWarmupNotifier, AsyncValue<void>>(
-  (ref) => AppWarmupNotifier(),
+//
+// Services
+final appWarmupServiceProvider = Provider<AppWarmupService>((ref) {
+  return AppWarmupService(
+    isAuthenticated: ref.watch(authenticationServiceProvider).isAuthenticated,
+    userController: ref.watch(userControllerProvider.notifier),
+  );
+});
+
+//
+// Controllers
+final appWarmupControllerProvider =
+    StateNotifierProvider<AppWarmupController, AsyncValue<void>>(
+  (ref) => AppWarmupController(
+    appWarmupService: ref.watch(appWarmupServiceProvider),
+  ),
 );

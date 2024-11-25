@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:photo_lab/src/domain/authentication/data_sources/i_authentication_remote_data_source.dart';
+import 'package:photo_lab/src/domain/authentication/dtos/i_authentication_user_dto.dart';
+import 'package:photo_lab/src/infrastructure/authentication/dtos/authentication_user_dto.dart';
 
 class FirebaseAuthenticationDataSource
     implements IAuthenticationRemoteDataSource {
@@ -14,31 +16,7 @@ class FirebaseAuthenticationDataSource
   );
 
   @override
-  Future<String> signUpWithEmailAndPassword(
-    String email,
-    String password,
-  ) async {
-    final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-    return userCredential.user!.uid;
-  }
-
-  @override
-  Future<String> signInWithEmailAndPassword(
-    String email,
-    String password,
-  ) async {
-    final userCredential = await _firebaseAuth.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-    return userCredential.user!.uid;
-  }
-
-  @override
-  Future<String?> signInWithGoogle() async {
+  Future<IAuthenticationUserDto?> signInWithGoogle() async {
     final googleUser = await _googleSignIn.signIn();
 
     // Obtain the auth details from the request
@@ -51,26 +29,36 @@ class FirebaseAuthenticationDataSource
       idToken: googleAuth.idToken,
     );
 
-    // Once signed in, return the UserCredential
-    final userCredential =
-        await FirebaseAuth.instance.signInWithCredential(credential);
-    return userCredential.user?.uid;
+    // Once signed in, return the AuthenticationUserDto
+    final user =
+        (await FirebaseAuth.instance.signInWithCredential(credential)).user;
+    final id = user?.uid;
+    final email = user?.email;
+    final displayName = user?.displayName;
+    final photoUrl = user?.photoURL;
+    if (id == null || email == null) return null;
+
+    return AuthenticationUserDto(
+      id: id,
+      email: email,
+      displayName: displayName,
+      photoUrl: photoUrl,
+    );
   }
 
   @override
-  Stream<String?> authStateChanges() {
-    return _firebaseAuth
-        .authStateChanges()
-        .map((firebase.User? user) => user?.uid);
+  IAuthenticationUserDto? getSignedInUser() {
+    final user = _firebaseAuth.currentUser;
+    if (user == null) return null;
+
+    return AuthenticationUserDto.fromFirebaseUser(user);
   }
 
   @override
-  String? getSignedInUser() {
-    return _firebaseAuth.currentUser?.uid;
-  }
-
-  @override
-  Future<void> signOut() async {
-    await _firebaseAuth.signOut();
+  Stream<IAuthenticationUserDto?> authStateChanges() {
+    return _firebaseAuth.authStateChanges().map((firebase.User? user) {
+      if (user == null) return null;
+      return AuthenticationUserDto.fromFirebaseUser(user);
+    });
   }
 }
