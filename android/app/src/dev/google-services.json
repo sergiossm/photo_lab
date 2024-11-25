@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "52458567395",
+    "project_id": "photo-lab-f821d",
+    "storage_bucket": "photo-lab-f821d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:52458567395:android:7a1996d0de55c7336d37d6",
+        "android_client_info": {
+          "package_name": "com.joyo.photo_lab"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAATm556q1EY9FduNoNBHpRxpz8cJVViy0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:52458567395:android:9802de570e1d35fc6d37d6",
+        "android_client_info": {
+          "package_name": "com.joyo.photo_lab.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAATm556q1EY9FduNoNBHpRxpz8cJVViy0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

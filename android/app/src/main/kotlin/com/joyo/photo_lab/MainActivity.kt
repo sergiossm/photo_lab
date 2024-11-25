@@ -1,4 +1,4 @@
-package com.example.photo_lab
+package com.joyo.photo_lab
 
 import io.flutter.embedding.android.FlutterActivity
 

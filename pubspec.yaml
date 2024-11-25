@@ -9,11 +9,61 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  firebase_core: ^3.8.0
+  flutter_riverpod: ^2.6.1
+  ui_kit:
+    path: ui_kit
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  flutter_flavorizr: 2.2.3
 
 flutter:
   uses-material-design: true
+
+# Flutter Flavorizr configuration
+flavorizr:
+  ide: "vscode"
+  app:
+    android:
+      flavorDimensions: "flavor-type"
+    
+  flavors:
+    dev:
+      app:
+        name: "Photo Lab (Dev)"
+      android:
+        applicationId: "com.joyo.photo_lab.dev"
+        # icon: "assets/dev/app-icon-android.png"
+        # adaptiveIcon:
+        #   foreground: "assets/dev/app-icon-foreground.png"
+        #   background: "assets/android/app-icon-background.png"
+      ios:
+        bundleId: "com.joyo.photoLab.dev"
+        # icon: "assets/dev/app-icon-ios.png"
+    stg:
+      app:
+        name: "Photo Lab (Stg)"
+      android:
+        applicationId: "com.joyo.photo_lab.stg"
+        # icon: "assets/stg/app-icon-android.png"
+        # adaptiveIcon:
+        #   foreground: "assets/stg/app-icon-foreground.png"
+        #   background: "assets/android/app-icon-background.png"
+      ios:
+        bundleId: "com.joyo.photoLab.stg"
+        # icon: "assets/stg/app-icon-ios.png"
+    prod:
+      app:
+        name: "Photo Lab"
+      android:
+        applicationId: "com.joyo.photo_lab"
+        # icon: "assets/prod/app-icon-android.png"
+        # adaptiveIcon:
+        #   foreground: "assets/prod/app-icon-foreground.png"
+        #   background: "assets/android/app-icon-background.png"
+      ios:
+        bundleId: "com.joyo.photoLab"
+        # icon: "assets/prod/app-icon-ios.png"
