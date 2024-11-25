@@ -1,0 +1,4 @@
+enum AuthenticationFormType {
+  signIn,
+  signUp,
+}

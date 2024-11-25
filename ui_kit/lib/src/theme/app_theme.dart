@@ -95,3 +95,24 @@ class AppTheme {
   final AppThemeColorScheme color;
   final AppTextTheme textStyle;
 }
+
+class ThemeProvider extends InheritedWidget {
+  const ThemeProvider({
+    required this.appTheme,
+    required super.child,
+    super.key,
+  });
+
+  final AppTheme appTheme;
+
+  ThemeData get theme => appTheme.theme;
+  AppTextTheme get textStyle => appTheme.textStyle;
+  AppThemeColorScheme get color => appTheme.color;
+
+  static ThemeProvider of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<ThemeProvider>()!;
+
+  @override
+  bool updateShouldNotify(covariant ThemeProvider oldWidget) =>
+      oldWidget.appTheme.theme.brightness != appTheme.theme.brightness;
+}
