@@ -7,4 +7,5 @@ class IconAssets {
   static const IconData google = FontAwesomeIcons.google;
   static const IconData photos = FontAwesomeIcons.images;
   static const IconData settings = FontAwesomeIcons.gear;
+  static const IconData camera = FontAwesomeIcons.camera;
 }

@@ -1,7 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:photo_lab/src/presentation/shared/extensions/l10n_extensions.dart';
 import 'package:ui_kit/ui_kit.dart';
 
 class ScaffoldWithNestedNavigation extends ConsumerWidget {
@@ -31,21 +32,36 @@ class ScaffoldWithNestedNavigation extends ConsumerWidget {
 
     return Scaffold(
       body: navigationShell,
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: selectedIndex,
-        onTap: _goBranch,
-        items: [
-          BottomNavigationBarItem(
-            icon: const Icon(
-              IconAssets.photos,
-            ),
-            label: context.loc.photos,
+      extendBody: true,
+      bottomNavigationBar: ClipRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: BottomNavigationBar(
+            elevation: 0, showSelectedLabels: false,
+            showUnselectedLabels: false,
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: context.color.surface.withOpacity(.12),
+            currentIndex: selectedIndex,
+            onTap: _goBranch,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(
+                  IconAssets.photos,
+                  size: AppSizes.s6,
+                ),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  IconAssets.settings,
+                  size: AppSizes.s6,
+                ),
+                label: '',
+              ),
+            ],
+            // backgroundColor: const Color(0xAAFFFFFF),
           ),
-          BottomNavigationBarItem(
-            icon: const Icon(IconAssets.settings),
-            label: context.loc.settings,
-          ),
-        ],
+        ),
       ),
     );
   }

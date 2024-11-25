@@ -36,26 +36,29 @@ class _VerticalSpacing {
   /// Vertical spacing of 16 pixels.
   SizedBox get s5 => const SizedBox(height: AppSizes.s5);
 
-  /// Vertical spacing of 24 pixels.
+  /// Vertical spacing of 20 pixels.
   SizedBox get s6 => const SizedBox(height: AppSizes.s6);
 
-  /// Vertical spacing of 32 pixels.
+  /// Vertical spacing of 24 pixels.
   SizedBox get s7 => const SizedBox(height: AppSizes.s7);
 
-  /// Vertical spacing of 40 pixels.
+  /// Vertical spacing of 32 pixels.
   SizedBox get s8 => const SizedBox(height: AppSizes.s8);
 
-  /// Vertical spacing of 48 pixels.
+  /// Vertical spacing of 40 pixels.
   SizedBox get s9 => const SizedBox(height: AppSizes.s9);
 
-  /// Vertical spacing of 56 pixels.
+  /// Vertical spacing of 48 pixels.
   SizedBox get s10 => const SizedBox(height: AppSizes.s10);
 
-  /// Vertical spacing of 64 pixels.
+  /// Vertical spacing of 56 pixels.
   SizedBox get s11 => const SizedBox(height: AppSizes.s11);
 
-  /// Vertical spacing of 72 pixels.
+  /// Vertical spacing of 64 pixels.
   SizedBox get s12 => const SizedBox(height: AppSizes.s12);
+
+  /// Vertical spacing of 72 pixels.
+  SizedBox get s13 => const SizedBox(height: AppSizes.s13);
 }
 
 /// Internal class for creating horizontal spacing.
@@ -83,24 +86,27 @@ class _HorizontalSpacing {
   /// Horizontal spacing of 16 pixels.
   SizedBox get s5 => const SizedBox(width: AppSizes.s5);
 
-  /// Horizontal spacing of 24 pixels.
+  /// Horizontal spacing of 20 pixels.
   SizedBox get s6 => const SizedBox(width: AppSizes.s6);
 
-  /// Horizontal spacing of 32 pixels.
+  /// Horizontal spacing of 24 pixels.
   SizedBox get s7 => const SizedBox(width: AppSizes.s7);
 
-  /// Horizontal spacing of 40 pixels.
+  /// Horizontal spacing of 32 pixels.
   SizedBox get s8 => const SizedBox(width: AppSizes.s8);
 
-  /// Horizontal spacing of 48 pixels.
+  /// Horizontal spacing of 40 pixels.
   SizedBox get s9 => const SizedBox(width: AppSizes.s9);
 
-  /// Horizontal spacing of 56 pixels.
+  /// Horizontal spacing of 48 pixels.
   SizedBox get s10 => const SizedBox(width: AppSizes.s10);
 
-  /// Horizontal spacing of 64 pixels.
+  /// Horizontal spacing of 56 pixels.
   SizedBox get s11 => const SizedBox(width: AppSizes.s11);
 
-  /// Horizontal spacing of 72 pixels.
+  /// Horizontal spacing of 64 pixels.
   SizedBox get s12 => const SizedBox(width: AppSizes.s12);
+
+  /// Horizontal spacing of 72 pixels.
+  SizedBox get s13 => const SizedBox(width: AppSizes.s13);
 }

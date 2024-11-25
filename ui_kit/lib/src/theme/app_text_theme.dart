@@ -13,6 +13,12 @@ class AppTextTheme extends TextTheme {
     required this.titleLarge,
     required this.titleMedium,
     required this.titleSmall,
+    required this.bodyLarge,
+    required this.bodyMedium,
+    required this.bodySmall,
+    required this.labelLarge,
+    required this.labelMedium,
+    required this.labelSmall,
   }) : super();
 
   factory AppTextTheme.byColorScheme(
@@ -82,6 +88,48 @@ class AppTextTheme extends TextTheme {
           color: colorScheme.onSurface,
         ),
       ),
+      bodyLarge: AppThemeTextStyle(colorScheme).merge(
+        GoogleFonts.roboto(
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
+          color: colorScheme.onSurface,
+        ),
+      ),
+      bodyMedium: AppThemeTextStyle(colorScheme).merge(
+        GoogleFonts.roboto(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+          color: colorScheme.onSurface,
+        ),
+      ),
+      bodySmall: AppThemeTextStyle(colorScheme).merge(
+        GoogleFonts.roboto(
+          fontSize: 12,
+          fontWeight: FontWeight.w400,
+          color: colorScheme.onSurface,
+        ),
+      ),
+      labelLarge: AppThemeTextStyle(colorScheme).merge(
+        GoogleFonts.roboto(
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+          color: colorScheme.onSurface,
+        ),
+      ),
+      labelMedium: AppThemeTextStyle(colorScheme).merge(
+        GoogleFonts.roboto(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+          color: colorScheme.onSurface,
+        ),
+      ),
+      labelSmall: AppThemeTextStyle(colorScheme).merge(
+        GoogleFonts.roboto(
+          fontSize: 12,
+          fontWeight: FontWeight.w400,
+          color: colorScheme.onSurface,
+        ),
+      ),
     );
   }
 
@@ -103,6 +151,18 @@ class AppTextTheme extends TextTheme {
   final AppThemeTextStyle titleMedium;
   @override
   final AppThemeTextStyle titleSmall;
+  @override
+  final AppThemeTextStyle bodyLarge;
+  @override
+  final AppThemeTextStyle bodyMedium;
+  @override
+  final AppThemeTextStyle bodySmall;
+  @override
+  final AppThemeTextStyle labelLarge;
+  @override
+  final AppThemeTextStyle labelMedium;
+  @override
+  final AppThemeTextStyle labelSmall;
 }
 
 class AppThemeTextStyle extends TextStyle {

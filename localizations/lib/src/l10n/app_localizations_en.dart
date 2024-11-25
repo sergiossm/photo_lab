@@ -26,4 +26,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings => 'Settings';
+
+  @override
+  String get importFrom => 'Import from';
+
+  @override
+  String get camera => 'Camera';
 }

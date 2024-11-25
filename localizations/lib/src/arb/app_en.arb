@@ -27,5 +27,13 @@
     "settings": "Settings",
     "@settings": {
         "description": "The settings tab text"
+    },
+    "importFrom": "Import from",
+    "@importFrom": {
+        "description": "The import from text"
+    },
+    "camera": "Camera",
+    "@camera": {
+        "description": "The camera text"
     }
 }

@@ -82,7 +82,7 @@ class LandingPage extends StatelessWidget {
                         return Button(
                           text: context.loc.continueWithGoogle,
                           type: ButtonType.tonal,
-                          leading: Icon(
+                          icon: Icon(
                             IconAssets.google,
                             size: AppSizes.s4,
                             color: context.color.onSecondary,
