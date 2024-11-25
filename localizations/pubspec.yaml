@@ -1,0 +1,23 @@
+name: localizations
+description: "A new Flutter package project."
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: ^3.5.4
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.19.0
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_lints: ^4.0.0
+  flutter_gen: ^5.8.0
+  build_runner: ^2.4.13
+
+flutter:
+  generate: true

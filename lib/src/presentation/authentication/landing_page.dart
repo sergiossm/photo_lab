@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:photo_lab/src/presentation/shared/extensions/l10n_extensions.dart';
 import 'package:ui_kit/ui_kit.dart';
 
 class LandingPage extends StatelessWidget {
@@ -12,7 +13,7 @@ class LandingPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Landing Page',
+              context.loc.appTitle,
               style: context.textStyle.displayLarge
                   .copyWith(color: context.color.primary),
             ),

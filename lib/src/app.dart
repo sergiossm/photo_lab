@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:localizations/localizations.dart';
 import 'package:photo_lab/src/presentation/routing/routers/router.dart';
 import 'package:ui_kit/ui_kit.dart';
 
@@ -21,6 +22,8 @@ class PhotoLabApp extends ConsumerWidget {
     );
 
     return MaterialApp.router(
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       routerConfig: router,
       debugShowCheckedModeBanner: false,
       theme: appTheme.theme,
