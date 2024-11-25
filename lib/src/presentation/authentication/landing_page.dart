@@ -1,4 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:photo_lab/src/application/authentication/providers.dart';
+import 'package:photo_lab/src/presentation/authentication/authentication_form_type.dart';
+import 'package:photo_lab/src/presentation/routing/params/authentication_params.dart';
+import 'package:photo_lab/src/presentation/routing/routes/routes.dart';
 import 'package:photo_lab/src/presentation/shared/extensions/l10n_extensions.dart';
 import 'package:ui_kit/ui_kit.dart';
 
@@ -8,14 +16,106 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              context.loc.appTitle,
-              style: context.textStyle.displayLarge
-                  .copyWith(color: context.color.primary),
+            const Expanded(
+              flex: 4,
+              child: AutoScrollImageCarousel(
+                images: [
+                  ImageAssets.landingCarousel1,
+                  ImageAssets.landingCarousel2,
+                  ImageAssets.landingCarousel3,
+                ],
+              ),
+            ),
+            Expanded(
+              flex: 3,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: AppSizes.s8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      context.loc.appTitle,
+                      style: context.textStyle.displayLarge.copyWith(
+                        color: context.color.primary,
+                        height: 1,
+                      ),
+                    ),
+                    Text(
+                      context.loc.appDescription,
+                      style: context.textStyle.titleLarge
+                          .copyWith(color: context.color.onSurface),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 3,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: AppSizes.s8),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Button(
+                      text: context.loc.signUp,
+                      expand: true,
+                      onPressed: () async {
+                        unawaited(
+                          context.pushNamed(
+                            Routes.authSignInSignUp.name,
+                            extra: AuthenticationParams(
+                              formType: AuthenticationFormType.signUp,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    AppSpacing.vertical.s5,
+                    Consumer(
+                      builder:
+                          (BuildContext context, WidgetRef ref, Widget? child) {
+                        return Button(
+                          text: context.loc.continueWithGoogle,
+                          type: ButtonType.tonal,
+                          leading: Icon(
+                            IconAssets.google,
+                            size: AppSizes.s4,
+                            color: context.color.onSecondary,
+                          ),
+                          expand: true,
+                          onPressed: () async {
+                            (await ref
+                                    .read(authenticationServiceProvider)
+                                    .signInWithGoogle())
+                                .fold(
+                              (failure) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  AppSnackBar.error(text: failure)
+                                      .build(context),
+                                );
+                              },
+                              (_) {
+                                // TODO: Init notifiers needed for the home page
+                              },
+                            );
+                          },
+                        );
+                      },
+                    ),
+                    AppSpacing.vertical.s5,
+                    Button(
+                      text: context.loc.logIn,
+                      type: ButtonType.text,
+                      expand: true,
+                      onPressed: () async {},
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),

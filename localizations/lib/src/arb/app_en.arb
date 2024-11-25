@@ -3,5 +3,21 @@
     "appTitle": "Photo Lab",
     "@appTitle": {
         "description": "The title of the application"
+    },
+    "appDescription": "A photo editing app",
+    "@appDescription": {
+        "description": "The description of the application"
+    },
+    "continueWithGoogle": "Continue with Google",
+    "@continueWithGoogle": {
+        "description": "The continue with Google button text"
+    },
+    "logIn": "Log in",
+    "@logIn": {
+        "description": "The log in button text"
+    },
+    "signUp": "Sign up",
+    "@signUp": {
+        "description": "The sign up button text"
     }
 }

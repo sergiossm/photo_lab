@@ -98,6 +98,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Photo Lab'**
   String get appTitle;
+
+  /// The description of the application
+  ///
+  /// In en, this message translates to:
+  /// **'A photo editing app'**
+  String get appDescription;
+
+  /// The continue with Google button text
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Google'**
+  String get continueWithGoogle;
+
+  /// The log in button text
+  ///
+  /// In en, this message translates to:
+  /// **'Log in'**
+  String get logIn;
+
+  /// The sign up button text
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up'**
+  String get signUp;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

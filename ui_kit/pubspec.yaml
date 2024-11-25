@@ -11,6 +11,7 @@ dependencies:
   carousel_slider: ^5.0.0
   flutter:
     sdk: flutter
+  font_awesome_flutter: ^10.8.0
   google_fonts: ^6.2.1
 
 dev_dependencies:
@@ -19,3 +20,5 @@ dev_dependencies:
   very_good_analysis:
 
 flutter:
+  assets:
+    - assets/images/

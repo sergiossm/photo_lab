@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:photo_lab/src/domain/authentication/data_sources/i_authentication_remote_data_source.dart';
-import 'package:photo_lab/src/domain/authentication/facades/i_authentication_service.dart';
+import 'package:photo_lab/src/domain/authentication/facades/i_authentication_facade.dart';
 import 'package:photo_lab/src/domain/shared/failures/failure.dart';
 import 'package:photo_lab/src/domain/shared/value_objects/unique_id.dart';
 
@@ -22,6 +22,17 @@ class AuthenticationFacade implements IAuthenticationFacade {
       return right(UniqueId.fromUniqueString(result));
     } catch (_) {
       return left(Failure('Error signing in user with email $email'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Option<UniqueId>>> signInWithGoogle() async {
+    try {
+      final result = await _remoteDataSource.signInWithGoogle();
+      if (result == null) return right(none());
+      return right(optionOf(UniqueId.fromUniqueString(result)));
+    } catch (_) {
+      return left(const Failure('Error signing in user with Google'));
     }
   }
 

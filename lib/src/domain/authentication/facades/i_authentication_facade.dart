@@ -7,6 +7,7 @@ abstract class IAuthenticationFacade {
     String email,
     String password,
   );
+  Future<Either<Failure, Option<UniqueId>>> signInWithGoogle();
   // Future<Either<Failure, UniqueId>> signUpWithEmailAndPassword(
   //     EmailAddress email, Password password);
   Future<Either<Failure, Unit>> sendPasswordResetEmail(String email);
