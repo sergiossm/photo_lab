@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:photo_lab/src/application/authentication/providers.dart';
+import 'package:photo_lab/src/application/warmup/providers.dart';
 import 'package:photo_lab/src/presentation/authentication/authentication_form_type.dart';
 import 'package:photo_lab/src/presentation/routing/params/authentication_params.dart';
 import 'package:photo_lab/src/presentation/routing/routes/routes.dart';
@@ -99,7 +100,7 @@ class LandingPage extends StatelessWidget {
                                 );
                               },
                               (_) {
-                                // TODO: Init notifiers needed for the home page
+                                ref.read(appWarmupServiceProvider).warmUp();
                               },
                             );
                           },
@@ -111,7 +112,16 @@ class LandingPage extends StatelessWidget {
                       text: context.loc.logIn,
                       type: ButtonType.text,
                       expand: true,
-                      onPressed: () async {},
+                      onPressed: () async {
+                        unawaited(
+                          context.pushNamed(
+                            Routes.authSignInSignUp.name,
+                            extra: AuthenticationParams(
+                              formType: AuthenticationFormType.signIn,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),

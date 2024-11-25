@@ -19,5 +19,13 @@
     "signUp": "Sign up",
     "@signUp": {
         "description": "The sign up button text"
+    },
+    "photos": "Photos",
+    "@photos": {
+        "description": "The photos tab text"
+    },
+    "settings": "Settings",
+    "@settings": {
+        "description": "The settings tab text"
     }
 }
