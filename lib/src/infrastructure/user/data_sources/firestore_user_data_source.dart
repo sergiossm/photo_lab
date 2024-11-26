@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:photo_lab/src/domain/shared/data_sources/i_remote_data_source.dart';
 import 'package:photo_lab/src/domain/shared/i_dto.dart';
-import 'package:photo_lab/src/domain/shared/i_remote_data_source.dart';
 import 'package:photo_lab/src/domain/shared/value_objects/unique_id.dart';
 import 'package:photo_lab/src/infrastructure/shared/firestore_collections.dart';
 import 'package:photo_lab/src/infrastructure/user/dtos/user_dto.dart';
 
-class FirestoreUserDataSource implements IRemoteDataSource {
+class FirestoreUserDataSource implements IRemoteDataSource<UserDto> {
   final _path = FirestoreCollections.users;
 
   final _firestore = FirebaseFirestore.instance..settings = const Settings(persistenceEnabled: false);
@@ -16,7 +16,7 @@ class FirestoreUserDataSource implements IRemoteDataSource {
   }
 
   @override
-  Stream<IDto> watch(UniqueId id) async* {
+  Stream<UserDto> watch(UniqueId id) async* {
     final idString = id.getOrCrash();
     final snapshots = _firestore.collection(_path).doc(idString).snapshots();
     await for (final snapshot in snapshots) {
@@ -25,5 +25,5 @@ class FirestoreUserDataSource implements IRemoteDataSource {
   }
 
   @override
-  Stream<List<IDto>> watchAllForUser(UniqueId userId) => throw UnimplementedError();
+  Stream<List<UserDto>> watchAllForUser(UniqueId userId) => throw UnimplementedError();
 }
