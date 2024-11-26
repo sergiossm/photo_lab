@@ -18,7 +18,7 @@ class UserController extends StateNotifier<UserState> {
     _watchSignedInUser();
   }
 
-  Future<void> _watchSignedInUser() async {
+  void _watchSignedInUser() {
     try {
       _userService.watchSignedInUser().toAsyncValue().asyncMap(
         (result) {

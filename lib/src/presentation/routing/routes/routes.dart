@@ -8,6 +8,7 @@ enum Routes {
   authenticationLanding(AuthenticationRoutes.landing),
   authSignInSignUp(AuthenticationRoutes.signInSignUp),
   homePhotos(PhotosRoutes.base),
+  homePhotosEdit(PhotosRoutes.edit),
   homeSettings(SettingsRoutes.base);
 
   const Routes(this.path);

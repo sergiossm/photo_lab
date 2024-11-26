@@ -27,5 +27,49 @@
     "settings": "Settings",
     "@settings": {
         "description": "The settings tab text"
+    },
+    "importFrom": "Import from",
+    "@importFrom": {
+        "description": "The import from text"
+    },
+    "camera": "Camera",
+    "@camera": {
+        "description": "The camera text"
+    },
+    "files": "Files",
+    "@files": {
+        "description": "The files text"
+    },
+    "myEdits": "My Edits",
+    "@myEdits": {
+        "description": "The my edits text"
+    },
+    "save": "Save",
+    "@save": {
+        "description": "The save button text"
+    },
+    "grayscale": "Grayscale",
+    "@grayscale": {
+        "description": "The grayscale filter text"
+    },
+    "sepia": "Sepia",
+    "@sepia": {
+        "description": "The sepia filter text"
+    },
+    "invert": "Invert",
+    "@invert": {
+        "description": "The invert filter text"
+    },
+    "none": "None",
+    "@none": {
+        "description": "The none filter text"
+    },
+    "presets": "Presets",
+    "@presets": {
+        "description": "The presets text"
+    },
+    "aiFilters": "AI Filters",
+    "@aiFilters": {
+        "description": "The AI filters text"
     }
 }

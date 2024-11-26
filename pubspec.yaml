@@ -19,9 +19,11 @@ dependencies:
   go_router: ^14.6.1
   google_sign_in: ^6.2.2
   hooks_riverpod: ^2.6.1
+  image_picker: ^1.1.2
   json_serializable: ^6.9.0
   localizations:
     path: localizations
+  permission_handler: ^11.3.1
   rxdart: ^0.28.0
   ui_kit:
     path: ui_kit

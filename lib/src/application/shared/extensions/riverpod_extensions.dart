@@ -10,7 +10,8 @@ extension StateNotifierX<T> on StateNotifier<T> {
       onFail();
     } else {
       debugPrint(
-          'Could not update state because context of $runtimeType is not mounted');
+        'Could not update state because context of $runtimeType is not mounted',
+      );
     }
   }
 }

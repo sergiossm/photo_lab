@@ -18,14 +18,13 @@ final userRepositoryProvider = Provider<IUserRepository>((ref) {
 final userServiceProvider = Provider<UserService>((ref) {
   return UserService(
     userRepository: ref.watch(userRepositoryProvider),
-    authenticationFacade: ref.watch(firebaseAuthenticationFacadeProvider),
+    authenticationFacade: ref.watch(authenticationFacadeProvider),
   );
 });
 
 //
 // Controllers
-final userControllerProvider =
-    StateNotifierProvider<UserController, UserState>((ref) {
+final userControllerProvider = StateNotifierProvider<UserController, UserState>((ref) {
   return UserController(
     userService: ref.watch(userServiceProvider),
   );

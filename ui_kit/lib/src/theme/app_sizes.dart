@@ -19,30 +19,33 @@ class AppSizes {
   /// 16px
   static const double s5 = 16;
 
+  /// 20px
+  static const double s6 = 20;
+
   /// 24px
-  static const double s6 = 24;
+  static const double s7 = 24;
 
   /// 32px
-  static const double s7 = 32;
+  static const double s8 = 32;
 
   /// 40px
-  static const double s8 = 40;
+  static const double s9 = 40;
 
   /// 48px
-  static const double s9 = 48;
+  static const double s10 = 48;
 
   /// 56px
-  static const double s10 = 56;
+  static const double s11 = 56;
 
   /// 64px
-  static const double s11 = 64;
+  static const double s12 = 64;
 
   /// 72px
-  static const double s12 = 72;
+  static const double s13 = 72;
 
   /// 80px
-  static const double s13 = 80;
+  static const double s14 = 80;
 
   /// 88px
-  static const double s14 = 88;
+  static const double s15 = 88;
 }
