@@ -158,6 +158,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'My Edits'**
   String get myEdits;
+
+  /// The save button text
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// The grayscale filter text
+  ///
+  /// In en, this message translates to:
+  /// **'Grayscale'**
+  String get grayscale;
+
+  /// The sepia filter text
+  ///
+  /// In en, this message translates to:
+  /// **'Sepia'**
+  String get sepia;
+
+  /// The invert filter text
+  ///
+  /// In en, this message translates to:
+  /// **'Invert'**
+  String get invert;
+
+  /// The none filter text
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get none;
+
+  /// The presets text
+  ///
+  /// In en, this message translates to:
+  /// **'Presets'**
+  String get presets;
+
+  /// The AI filters text
+  ///
+  /// In en, this message translates to:
+  /// **'AI Filters'**
+  String get aiFilters;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

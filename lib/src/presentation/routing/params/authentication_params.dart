@@ -2,5 +2,6 @@ import 'package:photo_lab/src/presentation/authentication/authentication_form_ty
 
 class AuthenticationParams {
   AuthenticationParams({required this.formType});
+
   final AuthenticationFormType formType;
 }

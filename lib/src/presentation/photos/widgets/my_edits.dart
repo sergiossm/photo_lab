@@ -22,22 +22,15 @@ class _MyEdits extends HookConsumerWidget {
                 final url = photo.url.toString();
                 final parameters = photo.filter.parameters.getOrElse([]);
 
-                return CachedNetworkImage(
-                  imageUrl: url,
-                  imageBuilder: (context, imageProvider) => parameters.isEmpty
-                      ? Image(image: imageProvider)
-                      : Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.cover,
-                              colorFilter: ColorFilter.matrix(parameters),
-                            ),
-                          ),
-                        ),
-                  height: AppSizes.s15,
-                  width: AppSizes.s15,
-                  fit: BoxFit.cover,
+                return PhotoEditItem(
+                  url: url,
+                  colorFilter: parameters.isEmpty ? null : ColorFilter.matrix(parameters),
+                  onTap: () {
+                    context.goNamed(
+                      Routes.homePhotosEdit.name,
+                      extra: EditPhotoParams(photo: photo),
+                    );
+                  },
                 );
               }).toList(),
             );

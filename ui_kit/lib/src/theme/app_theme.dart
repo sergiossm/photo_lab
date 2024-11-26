@@ -112,8 +112,7 @@ class ThemeProvider extends InheritedWidget {
   AppTextTheme get textStyle => appTheme.textStyle;
   AppThemeColorScheme get color => appTheme.color;
 
-  static ThemeProvider of(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<ThemeProvider>()!;
+  static ThemeProvider of(BuildContext context) => context.dependOnInheritedWidgetOfExactType<ThemeProvider>()!;
 
   @override
   bool updateShouldNotify(covariant ThemeProvider oldWidget) =>

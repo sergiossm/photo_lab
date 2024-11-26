@@ -38,4 +38,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get myEdits => 'My Edits';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get grayscale => 'Grayscale';
+
+  @override
+  String get sepia => 'Sepia';
+
+  @override
+  String get invert => 'Invert';
+
+  @override
+  String get none => 'None';
+
+  @override
+  String get presets => 'Presets';
+
+  @override
+  String get aiFilters => 'AI Filters';
 }

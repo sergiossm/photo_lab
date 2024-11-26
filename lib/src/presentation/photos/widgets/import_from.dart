@@ -51,6 +51,7 @@ class _ImportFrom extends HookConsumerWidget {
                 expand: true,
                 type: ButtonType.iconTonal,
                 iconPosition: IconPosition.top,
+                borderRadius: AppRadius.circular.s5,
                 icon: const Icon(
                   IconAssets.photos,
                   size: AppSizes.s6,
@@ -66,6 +67,7 @@ class _ImportFrom extends HookConsumerWidget {
               child: Button(
                 expand: true,
                 type: ButtonType.iconTonal,
+                borderRadius: AppRadius.circular.s5,
                 iconPosition: IconPosition.top,
                 icon: const Icon(
                   IconAssets.files,
@@ -79,6 +81,7 @@ class _ImportFrom extends HookConsumerWidget {
             Expanded(
               child: Button(
                 expand: true,
+                borderRadius: AppRadius.circular.s5,
                 type: ButtonType.iconTonal,
                 iconPosition: IconPosition.top,
                 icon: const Icon(

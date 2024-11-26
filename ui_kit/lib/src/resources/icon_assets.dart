@@ -9,4 +9,6 @@ class IconAssets {
   static const IconData settings = FontAwesomeIcons.gear;
   static const IconData camera = FontAwesomeIcons.camera;
   static const IconData files = FontAwesomeIcons.folderMinus;
+  static const IconData back = FontAwesomeIcons.chevronLeft;
+  static const IconData empty = FontAwesomeIcons.ban;
 }

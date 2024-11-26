@@ -34,6 +34,7 @@ class Button extends StatefulWidget {
     this.iconPosition = IconPosition.left,
     this.isLoading = false,
     this.expand = false,
+    this.borderRadius,
     this.icon,
     super.key,
   });
@@ -46,6 +47,7 @@ class Button extends StatefulWidget {
   final bool isLoading;
   final bool expand;
   final Widget? icon;
+  final BorderRadius? borderRadius;
 
   @override
   State<Button> createState() => _ButtonState();
@@ -85,9 +87,7 @@ class _ButtonState extends State<Button> {
     if (showLoader) {
       child = ColorFiltered(
         colorFilter: ColorFilter.mode(
-          (widget.type == ButtonType.filled)
-              ? context.color.onPrimary
-              : context.color.primary,
+          (widget.type == ButtonType.filled) ? context.color.onPrimary : context.color.primary,
           BlendMode.srcIn,
         ),
         child: const LoadingIndicator(
@@ -95,8 +95,7 @@ class _ButtonState extends State<Button> {
           strokeWidth: 1.5,
         ),
       );
-    } else if (widget.icon != null &&
-        widget.iconPosition == IconPosition.right) {
+    } else if (widget.icon != null && widget.iconPosition == IconPosition.right) {
       child = Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -107,8 +106,7 @@ class _ButtonState extends State<Button> {
           AppSpacing.horizontal.s3,
         ],
       );
-    } else if (widget.icon != null &&
-        widget.iconPosition == IconPosition.left) {
+    } else if (widget.icon != null && widget.iconPosition == IconPosition.left) {
       child = Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -133,13 +131,13 @@ class _ButtonState extends State<Button> {
     }
 
     return SizedBox(
-      height:
-          widget.iconPosition == IconPosition.top ? null : widget.size.height,
+      height: widget.iconPosition == IconPosition.top ? null : widget.size.height,
       width: widget.expand ? double.infinity : null,
       child: _CustomFilledButton(
         type: widget.type,
         onPressed: onPressedFunc,
         removePadding: widget.size == ButtonSize.small,
+        borderRadius: widget.borderRadius,
         child: child,
       ),
     );
@@ -151,6 +149,7 @@ class _CustomFilledButton extends StatelessWidget {
     required this.type,
     required this.child,
     this.onPressed,
+    this.borderRadius,
     this.removePadding = false,
   });
 
@@ -158,6 +157,7 @@ class _CustomFilledButton extends StatelessWidget {
   final Future<void> Function()? onPressed;
   final Widget child;
   final bool removePadding;
+  final BorderRadius? borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -168,14 +168,21 @@ class _CustomFilledButton extends StatelessWidget {
       ButtonType.filled => FilledButton(
           onPressed: onPressed,
           style: ButtonStyle(
+            shape: borderRadius == null
+                ? null
+                : WidgetStateProperty.resolveWith<OutlinedBorder?>(
+                    (states) {
+                      return RoundedRectangleBorder(
+                        borderRadius: borderRadius!,
+                      );
+                    },
+                  ),
             overlayColor: WidgetStateProperty.resolveWith<Color?>(
               (states) {
                 return context.color.primary.withOpacity(.05);
               },
             ),
-            padding: removePadding
-                ? const WidgetStatePropertyAll(horizontalPadding)
-                : null,
+            padding: removePadding ? const WidgetStatePropertyAll(horizontalPadding) : null,
             textStyle: WidgetStatePropertyAll(textStyle),
             backgroundColor: WidgetStateProperty.resolveWith<Color?>(
               (states) {
@@ -199,14 +206,21 @@ class _CustomFilledButton extends StatelessWidget {
       ButtonType.tonal => FilledButton(
           onPressed: onPressed,
           style: ButtonStyle(
+            shape: borderRadius == null
+                ? null
+                : WidgetStateProperty.resolveWith<OutlinedBorder?>(
+                    (states) {
+                      return RoundedRectangleBorder(
+                        borderRadius: borderRadius!,
+                      );
+                    },
+                  ),
             overlayColor: WidgetStateProperty.resolveWith<Color?>(
               (states) {
                 return context.color.onSecondary.withOpacity(.05);
               },
             ),
-            padding: removePadding
-                ? const WidgetStatePropertyAll(horizontalPadding)
-                : null,
+            padding: removePadding ? const WidgetStatePropertyAll(horizontalPadding) : null,
             textStyle: WidgetStatePropertyAll(textStyle),
             backgroundColor: WidgetStateProperty.resolveWith<Color?>(
               (states) {
@@ -230,14 +244,21 @@ class _CustomFilledButton extends StatelessWidget {
       ButtonType.text => TextButton(
           onPressed: onPressed,
           style: ButtonStyle(
+            shape: borderRadius == null
+                ? null
+                : WidgetStateProperty.resolveWith<OutlinedBorder?>(
+                    (states) {
+                      return RoundedRectangleBorder(
+                        borderRadius: borderRadius!,
+                      );
+                    },
+                  ),
             overlayColor: WidgetStateProperty.resolveWith<Color?>(
               (states) {
                 return context.color.onSecondary.withOpacity(.05);
               },
             ),
-            padding: removePadding
-                ? const WidgetStatePropertyAll(horizontalPadding)
-                : null,
+            padding: removePadding ? const WidgetStatePropertyAll(horizontalPadding) : null,
             textStyle: WidgetStatePropertyAll(textStyle),
             backgroundColor: WidgetStateProperty.resolveWith<Color?>(
               (states) {
@@ -263,21 +284,21 @@ class _CustomFilledButton extends StatelessWidget {
       ButtonType.iconTonal => FilledButton(
           onPressed: onPressed,
           style: ButtonStyle(
-            shape: WidgetStateProperty.resolveWith<OutlinedBorder?>(
-              (states) {
-                return RoundedRectangleBorder(
-                  borderRadius: AppRadius.circular.s5,
-                );
-              },
-            ),
+            shape: borderRadius == null
+                ? null
+                : WidgetStateProperty.resolveWith<OutlinedBorder?>(
+                    (states) {
+                      return RoundedRectangleBorder(
+                        borderRadius: borderRadius!,
+                      );
+                    },
+                  ),
             overlayColor: WidgetStateProperty.resolveWith<Color?>(
               (states) {
                 return context.color.onSecondary.withOpacity(.05);
               },
             ),
-            padding: removePadding
-                ? const WidgetStatePropertyAll(horizontalPadding)
-                : null,
+            padding: removePadding ? const WidgetStatePropertyAll(horizontalPadding) : null,
             textStyle: WidgetStatePropertyAll(textStyle),
             backgroundColor: WidgetStateProperty.resolveWith<Color?>(
               (states) {

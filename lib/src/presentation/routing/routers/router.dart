@@ -9,18 +9,16 @@ import 'package:photo_lab/src/presentation/routing/routers/splash_router.dart';
 import 'package:photo_lab/src/presentation/routing/routes/routes.dart';
 import 'package:photo_lab/src/presentation/routing/widgets/scaffold_with_nested_navigation.dart';
 
-final _rootNavigatorKey = GlobalKey<NavigatorState>();
+final rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorPhotosKey = GlobalKey<NavigatorState>();
 final _shellNavigatorSettingsKey = GlobalKey<NavigatorState>();
 
 final goRouterProvider = Provider<GoRouter>((ref) {
-  final isAuthenticated =
-      ref.read(authenticationServiceProvider).isAuthenticated;
-  final initialRoute =
-      !isAuthenticated ? Routes.authenticationLanding.path : Routes.splash.path;
+  final isAuthenticated = ref.read(authenticationServiceProvider).isAuthenticated;
+  final initialRoute = !isAuthenticated ? Routes.authenticationLanding.path : Routes.splash.path;
 
   return GoRouter(
-    navigatorKey: _rootNavigatorKey,
+    navigatorKey: rootNavigatorKey,
     initialLocation: initialRoute,
     routes: [
       // Splash
