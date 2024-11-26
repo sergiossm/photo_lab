@@ -26,7 +26,7 @@ class _MyEdits extends HookConsumerWidget {
                   url: url,
                   colorFilter: parameters.isEmpty ? null : ColorFilter.matrix(parameters),
                   onTap: () {
-                    context.goNamed(
+                    context.pushNamed(
                       Routes.homePhotosEdit.name,
                       extra: EditPhotoParams(photo: photo),
                     );

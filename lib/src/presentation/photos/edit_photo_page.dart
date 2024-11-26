@@ -33,6 +33,20 @@ class EditPhotoPage extends HookWidget {
           },
           icon: const Icon(IconAssets.back, size: AppSizes.s6),
         ),
+        centerTitle: true,
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(IconAssets.undo, size: AppSizes.s5),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(IconAssets.redo, size: AppSizes.s5),
+            ),
+          ],
+        ),
         iconTheme: IconThemeData(color: context.color.surface),
         backgroundColor: context.color.onSurface,
         actions: [
@@ -46,18 +60,25 @@ class EditPhotoPage extends HookWidget {
         ],
       ),
       body: Center(
-        child: photo != null
-            ? () {
-                final url = photo!.url.toString();
-                final parameters = selectedFilter.value?.parameters.getOrElse([]) ?? [];
-                return ColorFilteredCachedNetworkImage(
-                  url: url,
-                  colorFilter: parameters.isEmpty ? null : ColorFilter.matrix(parameters),
-                );
-              }()
-            : const SizedBox.shrink(),
+        child: () {
+          final parameters = selectedFilter.value?.parameters.getOrElse([]) ?? [];
+          final colorFilter = parameters.isEmpty ? null : ColorFilter.matrix(parameters);
+
+          if (photo != null) {
+            final url = photo!.url.toString();
+            return ColorFilteredImage.network(url: url, colorFilter: colorFilter);
+          } else if (filePath != null) {
+            return ColorFilteredImage.file(filePath: filePath, colorFilter: colorFilter);
+          } else {
+            return const SizedBox.shrink();
+          }
+        }(),
       ),
-      bottomNavigationBar: _Filters(photo: photo, selectedFilter: selectedFilter),
+      bottomNavigationBar: _Filters(
+        filePath: filePath,
+        photo: photo,
+        selectedFilter: selectedFilter,
+      ),
     );
   }
 }

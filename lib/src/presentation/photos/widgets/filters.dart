@@ -3,10 +3,12 @@ part of '../edit_photo_page.dart';
 class _Filters extends HookConsumerWidget {
   const _Filters({
     required this.photo,
+    required this.filePath,
     required this.selectedFilter,
   });
 
   final Photo? photo;
+  final String? filePath;
   final ValueNotifier<Filter?> selectedFilter;
 
   @override
@@ -16,7 +18,7 @@ class _Filters extends HookConsumerWidget {
     return SafeArea(
       child: Container(
         color: context.color.onSurface,
-        height: 176,
+        height: 186,
         child: filters.when(
           data: (filters) {
             return Column(
@@ -54,14 +56,23 @@ class _Filters extends HookConsumerWidget {
 
                       return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: AppSizes.s2),
-                        child: FilterItem(
-                          imageUrl: photo!.url.toString(),
-                          filterName: isNoneFilter ? context.loc.none : filterType!.localizedName(context),
-                          isSelected: isSelected,
-                          colorFilter: isNoneFilter ? null : ColorFilter.matrix(filter!.parameters.getOrElse([])),
-                          showNoneIcon: isNoneFilter,
-                          onTap: () => selectedFilter.value = isNoneFilter ? null : filter,
-                        ),
+                        child: photo != null
+                            ? FilterItem.network(
+                                imageUrl: photo!.url.toString(),
+                                filterName: isNoneFilter ? context.loc.none : filterType!.localizedName(context),
+                                isSelected: isSelected,
+                                colorFilter: isNoneFilter ? null : ColorFilter.matrix(filter!.parameters.getOrElse([])),
+                                showNoneIcon: isNoneFilter,
+                                onTap: () => selectedFilter.value = isNoneFilter ? null : filter,
+                              )
+                            : FilterItem.file(
+                                filePath: filePath,
+                                filterName: isNoneFilter ? context.loc.none : filterType!.localizedName(context),
+                                isSelected: isSelected,
+                                colorFilter: isNoneFilter ? null : ColorFilter.matrix(filter!.parameters.getOrElse([])),
+                                showNoneIcon: isNoneFilter,
+                                onTap: () => selectedFilter.value = isNoneFilter ? null : filter,
+                              ),
                       );
                     },
                   ),

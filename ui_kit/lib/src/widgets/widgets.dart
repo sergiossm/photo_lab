@@ -1,6 +1,6 @@
 export 'auto_scroll_image_carousel.dart';
 export 'button.dart';
-export 'color_filtered_cached_network_image.dart';
+export 'color_filtered_image.dart';
 export 'filter_item.dart';
 export 'loading_indicator.dart';
 export 'photo_edit_item.dart';

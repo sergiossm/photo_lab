@@ -11,4 +11,6 @@ class IconAssets {
   static const IconData files = FontAwesomeIcons.folderMinus;
   static const IconData back = FontAwesomeIcons.chevronLeft;
   static const IconData empty = FontAwesomeIcons.ban;
+  static const IconData undo = FontAwesomeIcons.arrowRotateLeft;
+  static const IconData redo = FontAwesomeIcons.arrowRotateRight;
 }

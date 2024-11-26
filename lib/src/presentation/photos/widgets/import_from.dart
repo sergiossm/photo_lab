@@ -5,6 +5,15 @@ class _ImportFrom extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    void onImagePicked(String? path) {
+      if (path == null) return;
+
+      context.pushNamed(
+        Routes.homePhotosEdit.name,
+        extra: EditPhotoParams(filePath: path),
+      );
+    }
+
     void listenToPermissionEvents() {
       ref
         ..listenManual(permissionControllerProvider.select((value) => value.cameraStatus), (previous, next) async {
@@ -12,7 +21,7 @@ class _ImportFrom extends HookConsumerWidget {
           final isLoading = next.$2;
           if (wasLoading && !isLoading && next.$1 == PermissionStatus.granted) {
             final path = await _pickImage(ImageSource.camera);
-            // if (path != null) onImagePicked(path);
+            onImagePicked(path);
           }
         })
         ..listenManual(
@@ -22,7 +31,7 @@ class _ImportFrom extends HookConsumerWidget {
             final isLoading = next.$2;
             if (wasLoading && !isLoading && next.$1 == PermissionStatus.granted) {
               final path = await _pickImage(ImageSource.gallery);
-              // if (path != null) onImagePicked(path);
+              onImagePicked(path);
             }
           },
         );
