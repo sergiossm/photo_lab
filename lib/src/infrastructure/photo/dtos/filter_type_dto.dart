@@ -20,3 +20,16 @@ extension FilterTypeDtoX on FilterTypeDto {
     }
   }
 }
+
+extension FilterTypeX on FilterType {
+  FilterTypeDto toDto() {
+    switch (this) {
+      case FilterType.grayscale:
+        return FilterTypeDto.grayscale;
+      case FilterType.sepia:
+        return FilterTypeDto.sepia;
+      case FilterType.invert:
+        return FilterTypeDto.invert;
+    }
+  }
+}
