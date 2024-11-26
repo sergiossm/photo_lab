@@ -10,4 +10,9 @@ class Filter implements IEntity {
 
   final FilterType type;
   final Parameters parameters;
+
+  @override
+  String toString() {
+    return type.toString();
+  }
 }

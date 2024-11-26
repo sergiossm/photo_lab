@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:photo_lab/src/application/authentication/providers.dart';
 import 'package:photo_lab/src/application/photo/controllers/filters_controller.dart';
 import 'package:photo_lab/src/application/photo/controllers/photos_controller.dart';
+import 'package:photo_lab/src/application/photo/services/edit_history_service.dart';
 import 'package:photo_lab/src/application/photo/states/filters_state.dart';
 import 'package:photo_lab/src/application/photo/states/photos_state.dart';
 import 'package:photo_lab/src/domain/photo/repositories/i_filter_repository.dart';
@@ -19,6 +20,12 @@ final photoRepositoryProvider = Provider<IPhotoRepository>((ref) {
 
 final filterRepositoryProvider = Provider<IFilterRepository>((ref) {
   return FilterRepository(localDataSource: InMemoryFilterDataSource());
+});
+
+//
+// Services
+final editHistoryServiceProvider = Provider<EditHistoryService>((ref) {
+  return EditHistoryService();
 });
 
 //

@@ -5,12 +5,13 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:photo_lab/src/application/photo/providers.dart';
 import 'package:photo_lab/src/domain/photo/entities/filter.dart';
 import 'package:photo_lab/src/domain/photo/entities/photo.dart';
+import 'package:photo_lab/src/domain/photo/events/edit_events.dart';
 import 'package:photo_lab/src/presentation/shared/extensions/l10n_extensions.dart';
 import 'package:ui_kit/ui_kit.dart';
 
 part 'widgets/filters.dart';
 
-class EditPhotoPage extends HookWidget {
+class EditPhotoPage extends HookConsumerWidget {
   const EditPhotoPage({
     required this.photo,
     required this.filePath,
@@ -21,8 +22,59 @@ class EditPhotoPage extends HookWidget {
   final String? filePath;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final selectedFilter = useState<Filter?>(photo?.filter);
+
+    // Apply the selected filter to the photo
+    useEffect(
+      () {
+        // If the photo already has a filter applied, don't include it in the undo stack
+        // if (photo?.filter != null) {
+        // } else {
+        ref.read(editHistoryServiceProvider).applyFilter(selectedFilter.value);
+        // }
+        return null;
+      },
+      [selectedFilter.value],
+    );
+
+    // Dispose the edit history service when the page is disposed
+    useEffect(
+      () {
+        return ref.read(editHistoryServiceProvider).clearHistory;
+      },
+      [],
+    );
+
+    final canUndo = useState(photo?.filter != null); // If the photo already has a filter applied, it can be undone
+    final canRedo = useState(false);
+    final subscription = useOnStreamChange(
+      ref.watch(editHistoryServiceProvider).editHistoryStream,
+      onData: (event) {
+        event.fold(
+          (_) {},
+          (editEvent) {
+            if (editEvent is UndoStackNotEmpty) {
+              canUndo.value = true;
+            } else if (editEvent is UndoStackEmpty) {
+              canUndo.value = false;
+            } else if (editEvent is RedoStackNotEmpty) {
+              canRedo.value = true;
+            } else if (editEvent is RedoStackEmpty) {
+              canRedo.value = false;
+            }
+          },
+        );
+      },
+    );
+    useEffect(
+      () {
+        return () {
+          subscription?.cancel();
+        };
+      },
+      [subscription],
+    );
 
     return Scaffold(
       backgroundColor: context.color.onSecondary,
@@ -38,11 +90,30 @@ class EditPhotoPage extends HookWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             IconButton(
-              onPressed: () {},
+              disabledColor: context.color.surface.withOpacity(.5),
+              onPressed: !canUndo.value
+                  ? null
+                  : () {
+                      ref.read(editHistoryServiceProvider).undo();
+                      ref.read(editHistoryServiceProvider).currentFilter.fold(
+                            () => selectedFilter.value = null,
+                            (filter) => selectedFilter.value = filter,
+                          );
+                    },
               icon: const Icon(IconAssets.undo, size: AppSizes.s5),
             ),
             IconButton(
-              onPressed: () {},
+              disabledColor: context.color.surface.withOpacity(.5),
+              onPressed: !canRedo.value
+                  ? null
+                  : () {
+                      // Redo
+                      ref.read(editHistoryServiceProvider).redo();
+                      ref.read(editHistoryServiceProvider).currentFilter.fold(
+                            () => selectedFilter.value = null,
+                            (filter) => selectedFilter.value = filter,
+                          );
+                    },
               icon: const Icon(IconAssets.redo, size: AppSizes.s5),
             ),
           ],

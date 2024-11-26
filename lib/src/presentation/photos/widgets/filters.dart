@@ -14,6 +14,7 @@ class _Filters extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final filters = ref.watch(filtersControllerProvider).filters;
+    final editHistoryService = ref.read(editHistoryServiceProvider);
 
     return SafeArea(
       child: Container(
