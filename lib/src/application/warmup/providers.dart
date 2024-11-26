@@ -12,6 +12,7 @@ final appWarmupServiceProvider = Provider<AppWarmupService>((ref) {
     isAuthenticated: ref.watch(authenticationServiceProvider).isAuthenticated,
     userController: ref.watch(userControllerProvider.notifier),
     photosController: ref.watch(photosControllerProvider.notifier),
+    filtersController: ref.watch(filtersControllerProvider.notifier),
   );
 });
 
