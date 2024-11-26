@@ -1,21 +1,24 @@
 part of '../photos_page.dart';
 
 class _ImportFrom extends HookConsumerWidget {
-  const _ImportFrom();
+  const _ImportFrom({
+    required this.onImagePicked,
+  });
+
+  final void Function(String path) onImagePicked;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     void listenToPermissionEvents() {
       ref
-        ..listenManual(
-          permissionControllerProvider.select((value) => value.cameraStatus),
-          (previous, next) async {
-            final wasLoading = previous?.$2 ?? false;
-            final isLoading = next.$2;
-            if (wasLoading && !isLoading && next.$1 == PermissionStatus.granted) {
-              final path = await _pickImage(ImageSource.camera);
-            }
-          },
-        )
+        ..listenManual(permissionControllerProvider.select((value) => value.cameraStatus), (previous, next) async {
+          final wasLoading = previous?.$2 ?? false;
+          final isLoading = next.$2;
+          if (wasLoading && !isLoading && next.$1 == PermissionStatus.granted) {
+            final path = await _pickImage(ImageSource.camera);
+            if (path != null) onImagePicked(path);
+          }
+        })
         ..listenManual(
           permissionControllerProvider.select((value) => value.photosStatus),
           (previous, next) async {
@@ -23,6 +26,7 @@ class _ImportFrom extends HookConsumerWidget {
             final isLoading = next.$2;
             if (wasLoading && !isLoading && next.$1 == PermissionStatus.granted) {
               final path = await _pickImage(ImageSource.gallery);
+              if (path != null) onImagePicked(path);
             }
           },
         );

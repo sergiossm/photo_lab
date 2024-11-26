@@ -15,6 +15,8 @@ class PhotosPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final imagePath = useState<String?>(null);
+
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
@@ -34,9 +36,13 @@ class PhotosPage extends StatelessWidget {
                   ),
                 ),
                 AppSpacing.vertical.s3,
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: AppSizes.s5),
-                  child: _ImportFrom(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: AppSizes.s5),
+                  child: _ImportFrom(
+                    onImagePicked: (path) {
+                      imagePath.value = path;
+                    },
+                  ),
                 ),
               ],
             ),
