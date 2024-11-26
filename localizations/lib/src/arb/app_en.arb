@@ -35,5 +35,13 @@
     "camera": "Camera",
     "@camera": {
         "description": "The camera text"
+    },
+    "files": "Files",
+    "@files": {
+        "description": "The files text"
+    },
+    "myEdits": "My Edits",
+    "@myEdits": {
+        "description": "The my edits text"
     }
 }

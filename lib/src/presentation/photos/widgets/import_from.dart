@@ -1,11 +1,7 @@
 part of '../photos_page.dart';
 
 class _ImportFrom extends HookConsumerWidget {
-  const _ImportFrom({
-    required this.onImagePicked,
-  });
-
-  final void Function(String path) onImagePicked;
+  const _ImportFrom();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -16,7 +12,7 @@ class _ImportFrom extends HookConsumerWidget {
           final isLoading = next.$2;
           if (wasLoading && !isLoading && next.$1 == PermissionStatus.granted) {
             final path = await _pickImage(ImageSource.camera);
-            if (path != null) onImagePicked(path);
+            // if (path != null) onImagePicked(path);
           }
         })
         ..listenManual(
@@ -26,7 +22,7 @@ class _ImportFrom extends HookConsumerWidget {
             final isLoading = next.$2;
             if (wasLoading && !isLoading && next.$1 == PermissionStatus.granted) {
               final path = await _pickImage(ImageSource.gallery);
-              if (path != null) onImagePicked(path);
+              // if (path != null) onImagePicked(path);
             }
           },
         );
@@ -40,38 +36,62 @@ class _ImportFrom extends HookConsumerWidget {
       [],
     );
 
-    return Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(
-          child: Button(
-            expand: true,
-            type: ButtonType.iconTonal,
-            iconPosition: IconPosition.top,
-            icon: const Icon(
-              IconAssets.photos,
-              size: AppSizes.s6,
-            ),
-            text: context.loc.photos,
-            onPressed: () async {
-              await ref.read(permissionServiceProvider).checkAndRequestPermission(PermissionType.photos);
-            },
-          ),
+        Text(
+          context.loc.importFrom,
+          style: context.textStyle.titleMedium,
         ),
-        AppSpacing.horizontal.s4,
-        Expanded(
-          child: Button(
-            expand: true,
-            type: ButtonType.iconTonal,
-            iconPosition: IconPosition.top,
-            icon: const Icon(
-              IconAssets.camera,
-              size: AppSizes.s6,
+        AppSpacing.vertical.s3,
+        Row(
+          children: [
+            Expanded(
+              child: Button(
+                expand: true,
+                type: ButtonType.iconTonal,
+                iconPosition: IconPosition.top,
+                icon: const Icon(
+                  IconAssets.photos,
+                  size: AppSizes.s6,
+                ),
+                text: context.loc.photos,
+                onPressed: () async {
+                  await ref.read(permissionServiceProvider).checkAndRequestPermission(PermissionType.photos);
+                },
+              ),
             ),
-            text: context.loc.camera,
-            onPressed: () async {
-              await ref.read(permissionServiceProvider).checkAndRequestPermission(PermissionType.camera);
-            },
-          ),
+            AppSpacing.horizontal.s3,
+            Expanded(
+              child: Button(
+                expand: true,
+                type: ButtonType.iconTonal,
+                iconPosition: IconPosition.top,
+                icon: const Icon(
+                  IconAssets.files,
+                  size: AppSizes.s6,
+                ),
+                text: context.loc.files,
+                onPressed: () async {},
+              ),
+            ),
+            AppSpacing.horizontal.s3,
+            Expanded(
+              child: Button(
+                expand: true,
+                type: ButtonType.iconTonal,
+                iconPosition: IconPosition.top,
+                icon: const Icon(
+                  IconAssets.camera,
+                  size: AppSizes.s6,
+                ),
+                text: context.loc.camera,
+                onPressed: () async {
+                  await ref.read(permissionServiceProvider).checkAndRequestPermission(PermissionType.camera);
+                },
+              ),
+            ),
+          ],
         ),
       ],
     );

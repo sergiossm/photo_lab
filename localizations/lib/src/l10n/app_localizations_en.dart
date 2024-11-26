@@ -32,4 +32,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get camera => 'Camera';
+
+  @override
+  String get files => 'Files';
+
+  @override
+  String get myEdits => 'My Edits';
 }

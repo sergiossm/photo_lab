@@ -146,6 +146,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Camera'**
   String get camera;
+
+  /// The files text
+  ///
+  /// In en, this message translates to:
+  /// **'Files'**
+  String get files;
+
+  /// The my edits text
+  ///
+  /// In en, this message translates to:
+  /// **'My Edits'**
+  String get myEdits;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

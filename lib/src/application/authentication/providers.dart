@@ -5,8 +5,7 @@ import 'package:photo_lab/src/domain/authentication/facades/i_authentication_fac
 import 'package:photo_lab/src/infrastructure/authentication/data_sources/firebase_authentication_data_source.dart';
 import 'package:photo_lab/src/infrastructure/authentication/facades/authentication_facade.dart';
 
-final firebaseAuthenticationFacadeProvider =
-    Provider<IAuthenticationFacade>((ref) {
+final authenticationFacadeProvider = Provider<IAuthenticationFacade>((ref) {
   return AuthenticationFacade(
     remoteDataSource: FirebaseAuthenticationDataSource(),
   );
@@ -14,7 +13,7 @@ final firebaseAuthenticationFacadeProvider =
 
 final authenticationServiceProvider = Provider<AuthenticationService>((ref) {
   return AuthenticationService(
-    authenticationFacade: ref.watch(firebaseAuthenticationFacadeProvider),
+    authenticationFacade: ref.watch(authenticationFacadeProvider),
     userRepository: ref.watch(userRepositoryProvider),
   );
 });
