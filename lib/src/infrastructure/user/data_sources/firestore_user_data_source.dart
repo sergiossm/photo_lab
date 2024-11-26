@@ -8,23 +8,22 @@ import 'package:photo_lab/src/infrastructure/user/dtos/user_dto.dart';
 class FirestoreUserDataSource implements IRemoteDataSource {
   final _path = FirestoreCollections.users;
 
-  final _firestore = FirebaseFirestore.instance
-    ..settings = const Settings(persistenceEnabled: false);
+  final _firestore = FirebaseFirestore.instance..settings = const Settings(persistenceEnabled: false);
 
   @override
   Future<void> upsert(IDto userDto) {
-    return _firestore
-        .collection(_path)
-        .doc(userDto.id)
-        .set(userDto.toJson(), SetOptions(merge: true));
+    return _firestore.collection(_path).doc(userDto.id).set(userDto.toJson(), SetOptions(merge: true));
   }
 
   @override
-  Stream<IDto> watch(UniqueId uid) async* {
-    final id = uid.getOrCrash();
-    final snapshots = _firestore.collection(_path).doc(id).snapshots();
+  Stream<IDto> watch(UniqueId id) async* {
+    final idString = id.getOrCrash();
+    final snapshots = _firestore.collection(_path).doc(idString).snapshots();
     await for (final snapshot in snapshots) {
       yield UserDto.fromJson(snapshot.data()!);
     }
   }
+
+  @override
+  Stream<List<IDto>> watchAllForUser(UniqueId userId) => throw UnimplementedError();
 }

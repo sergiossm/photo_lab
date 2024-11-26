@@ -28,16 +28,15 @@ class UserRepository implements IUserRepository {
   }
 
   @override
-  Stream<Option<User>> watchUser(UniqueId userId) =>
-      _remoteDataSource.watch(userId).transform(
-            StreamTransformer<IDto, Option<User>>.fromHandlers(
-              handleData: (userDto, sink) {
-                final user = userDto.toDomain() as User;
-                sink.add(some(user));
-              },
-              handleError: (error, stackTrace, sink) {
-                sink.add(none());
-              },
-            ),
-          );
+  Stream<Option<User>> watchUser(UniqueId userId) => _remoteDataSource.watch(userId).transform(
+        StreamTransformer<IDto, Option<User>>.fromHandlers(
+          handleData: (userDto, sink) {
+            final user = userDto.toDomain() as User;
+            sink.add(some(user));
+          },
+          handleError: (error, stackTrace, sink) {
+            sink.add(none());
+          },
+        ),
+      );
 }

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'photo.dart';
+part of 'photo_dto.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,46 +14,58 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+PhotoDto _$PhotoDtoFromJson(Map<String, dynamic> json) {
+  return _PhotoDto.fromJson(json);
+}
+
 /// @nodoc
-mixin _$Photo {
-  UniqueId get id => throw _privateConstructorUsedError;
-  Uri get url => throw _privateConstructorUsedError;
+mixin _$PhotoDto {
+  String get id => throw _privateConstructorUsedError;
+  String get url => throw _privateConstructorUsedError;
+  @FirestoreTimestampConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @FirestoreTimestampConverter()
   DateTime get updatedAt => throw _privateConstructorUsedError;
-  Filter get filter => throw _privateConstructorUsedError;
+  FilterDto get filter => throw _privateConstructorUsedError;
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
-  /// Create a copy of Photo
+  /// Serializes this PhotoDto to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of PhotoDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $PhotoCopyWith<Photo> get copyWith => throw _privateConstructorUsedError;
+  $PhotoDtoCopyWith<PhotoDto> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PhotoCopyWith<$Res> {
-  factory $PhotoCopyWith(Photo value, $Res Function(Photo) then) =
-      _$PhotoCopyWithImpl<$Res, Photo>;
+abstract class $PhotoDtoCopyWith<$Res> {
+  factory $PhotoDtoCopyWith(PhotoDto value, $Res Function(PhotoDto) then) =
+      _$PhotoDtoCopyWithImpl<$Res, PhotoDto>;
   @useResult
   $Res call(
-      {UniqueId id,
-      Uri url,
-      DateTime createdAt,
-      DateTime updatedAt,
-      Filter filter,
+      {String id,
+      String url,
+      @FirestoreTimestampConverter() DateTime createdAt,
+      @FirestoreTimestampConverter() DateTime updatedAt,
+      FilterDto filter,
       DateTime? deletedAt});
+
+  $FilterDtoCopyWith<$Res> get filter;
 }
 
 /// @nodoc
-class _$PhotoCopyWithImpl<$Res, $Val extends Photo>
-    implements $PhotoCopyWith<$Res> {
-  _$PhotoCopyWithImpl(this._value, this._then);
+class _$PhotoDtoCopyWithImpl<$Res, $Val extends PhotoDto>
+    implements $PhotoDtoCopyWith<$Res> {
+  _$PhotoDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Photo
+  /// Create a copy of PhotoDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -69,11 +81,11 @@ class _$PhotoCopyWithImpl<$Res, $Val extends Photo>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
+              as String,
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as Uri,
+              as String,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -85,40 +97,54 @@ class _$PhotoCopyWithImpl<$Res, $Val extends Photo>
       filter: null == filter
           ? _value.filter
           : filter // ignore: cast_nullable_to_non_nullable
-              as Filter,
+              as FilterDto,
       deletedAt: freezed == deletedAt
           ? _value.deletedAt
           : deletedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ) as $Val);
   }
+
+  /// Create a copy of PhotoDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $FilterDtoCopyWith<$Res> get filter {
+    return $FilterDtoCopyWith<$Res>(_value.filter, (value) {
+      return _then(_value.copyWith(filter: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$PhotoImplCopyWith<$Res> implements $PhotoCopyWith<$Res> {
-  factory _$$PhotoImplCopyWith(
-          _$PhotoImpl value, $Res Function(_$PhotoImpl) then) =
-      __$$PhotoImplCopyWithImpl<$Res>;
+abstract class _$$PhotoDtoImplCopyWith<$Res>
+    implements $PhotoDtoCopyWith<$Res> {
+  factory _$$PhotoDtoImplCopyWith(
+          _$PhotoDtoImpl value, $Res Function(_$PhotoDtoImpl) then) =
+      __$$PhotoDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {UniqueId id,
-      Uri url,
-      DateTime createdAt,
-      DateTime updatedAt,
-      Filter filter,
+      {String id,
+      String url,
+      @FirestoreTimestampConverter() DateTime createdAt,
+      @FirestoreTimestampConverter() DateTime updatedAt,
+      FilterDto filter,
       DateTime? deletedAt});
+
+  @override
+  $FilterDtoCopyWith<$Res> get filter;
 }
 
 /// @nodoc
-class __$$PhotoImplCopyWithImpl<$Res>
-    extends _$PhotoCopyWithImpl<$Res, _$PhotoImpl>
-    implements _$$PhotoImplCopyWith<$Res> {
-  __$$PhotoImplCopyWithImpl(
-      _$PhotoImpl _value, $Res Function(_$PhotoImpl) _then)
+class __$$PhotoDtoImplCopyWithImpl<$Res>
+    extends _$PhotoDtoCopyWithImpl<$Res, _$PhotoDtoImpl>
+    implements _$$PhotoDtoImplCopyWith<$Res> {
+  __$$PhotoDtoImplCopyWithImpl(
+      _$PhotoDtoImpl _value, $Res Function(_$PhotoDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Photo
+  /// Create a copy of PhotoDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -130,15 +156,15 @@ class __$$PhotoImplCopyWithImpl<$Res>
     Object? filter = null,
     Object? deletedAt = freezed,
   }) {
-    return _then(_$PhotoImpl(
+    return _then(_$PhotoDtoImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
+              as String,
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as Uri,
+              as String,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -150,7 +176,7 @@ class __$$PhotoImplCopyWithImpl<$Res>
       filter: null == filter
           ? _value.filter
           : filter // ignore: cast_nullable_to_non_nullable
-              as Filter,
+              as FilterDto,
       deletedAt: freezed == deletedAt
           ? _value.deletedAt
           : deletedAt // ignore: cast_nullable_to_non_nullable
@@ -160,39 +186,45 @@ class __$$PhotoImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-class _$PhotoImpl implements _Photo {
-  const _$PhotoImpl(
+@JsonSerializable()
+class _$PhotoDtoImpl extends _PhotoDto {
+  const _$PhotoDtoImpl(
       {required this.id,
       required this.url,
-      required this.createdAt,
-      required this.updatedAt,
+      @FirestoreTimestampConverter() required this.createdAt,
+      @FirestoreTimestampConverter() required this.updatedAt,
       required this.filter,
-      this.deletedAt});
+      this.deletedAt})
+      : super._();
+
+  factory _$PhotoDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PhotoDtoImplFromJson(json);
 
   @override
-  final UniqueId id;
+  final String id;
   @override
-  final Uri url;
+  final String url;
   @override
+  @FirestoreTimestampConverter()
   final DateTime createdAt;
   @override
+  @FirestoreTimestampConverter()
   final DateTime updatedAt;
   @override
-  final Filter filter;
+  final FilterDto filter;
   @override
   final DateTime? deletedAt;
 
   @override
   String toString() {
-    return 'Photo(id: $id, url: $url, createdAt: $createdAt, updatedAt: $updatedAt, filter: $filter, deletedAt: $deletedAt)';
+    return 'PhotoDto(id: $id, url: $url, createdAt: $createdAt, updatedAt: $updatedAt, filter: $filter, deletedAt: $deletedAt)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PhotoImpl &&
+            other is _$PhotoDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.createdAt, createdAt) ||
@@ -204,45 +236,59 @@ class _$PhotoImpl implements _Photo {
                 other.deletedAt == deletedAt));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, url, createdAt, updatedAt, filter, deletedAt);
 
-  /// Create a copy of Photo
+  /// Create a copy of PhotoDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$PhotoImplCopyWith<_$PhotoImpl> get copyWith =>
-      __$$PhotoImplCopyWithImpl<_$PhotoImpl>(this, _$identity);
+  _$$PhotoDtoImplCopyWith<_$PhotoDtoImpl> get copyWith =>
+      __$$PhotoDtoImplCopyWithImpl<_$PhotoDtoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PhotoDtoImplToJson(
+      this,
+    );
+  }
 }
 
-abstract class _Photo implements Photo {
-  const factory _Photo(
-      {required final UniqueId id,
-      required final Uri url,
-      required final DateTime createdAt,
-      required final DateTime updatedAt,
-      required final Filter filter,
-      final DateTime? deletedAt}) = _$PhotoImpl;
+abstract class _PhotoDto extends PhotoDto {
+  const factory _PhotoDto(
+      {required final String id,
+      required final String url,
+      @FirestoreTimestampConverter() required final DateTime createdAt,
+      @FirestoreTimestampConverter() required final DateTime updatedAt,
+      required final FilterDto filter,
+      final DateTime? deletedAt}) = _$PhotoDtoImpl;
+  const _PhotoDto._() : super._();
+
+  factory _PhotoDto.fromJson(Map<String, dynamic> json) =
+      _$PhotoDtoImpl.fromJson;
 
   @override
-  UniqueId get id;
+  String get id;
   @override
-  Uri get url;
+  String get url;
   @override
+  @FirestoreTimestampConverter()
   DateTime get createdAt;
   @override
+  @FirestoreTimestampConverter()
   DateTime get updatedAt;
   @override
-  Filter get filter;
+  FilterDto get filter;
   @override
   DateTime? get deletedAt;
 
-  /// Create a copy of Photo
+  /// Create a copy of PhotoDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PhotoImplCopyWith<_$PhotoImpl> get copyWith =>
+  _$$PhotoDtoImplCopyWith<_$PhotoDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
