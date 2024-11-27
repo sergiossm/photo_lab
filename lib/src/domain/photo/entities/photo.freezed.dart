@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Photo {
   UniqueId get id => throw _privateConstructorUsedError;
+  UniqueId get userId => throw _privateConstructorUsedError;
   Uri get url => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
@@ -36,6 +37,7 @@ abstract class $PhotoCopyWith<$Res> {
   @useResult
   $Res call(
       {UniqueId id,
+      UniqueId userId,
       Uri url,
       DateTime createdAt,
       DateTime updatedAt,
@@ -59,6 +61,7 @@ class _$PhotoCopyWithImpl<$Res, $Val extends Photo>
   @override
   $Res call({
     Object? id = null,
+    Object? userId = null,
     Object? url = null,
     Object? createdAt = null,
     Object? updatedAt = null,
@@ -69,6 +72,10 @@ class _$PhotoCopyWithImpl<$Res, $Val extends Photo>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as UniqueId,
       url: null == url
           ? _value.url
@@ -103,6 +110,7 @@ abstract class _$$PhotoImplCopyWith<$Res> implements $PhotoCopyWith<$Res> {
   @useResult
   $Res call(
       {UniqueId id,
+      UniqueId userId,
       Uri url,
       DateTime createdAt,
       DateTime updatedAt,
@@ -124,6 +132,7 @@ class __$$PhotoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? userId = null,
     Object? url = null,
     Object? createdAt = null,
     Object? updatedAt = null,
@@ -134,6 +143,10 @@ class __$$PhotoImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as UniqueId,
       url: null == url
           ? _value.url
@@ -164,6 +177,7 @@ class __$$PhotoImplCopyWithImpl<$Res>
 class _$PhotoImpl implements _Photo {
   const _$PhotoImpl(
       {required this.id,
+      required this.userId,
       required this.url,
       required this.createdAt,
       required this.updatedAt,
@@ -172,6 +186,8 @@ class _$PhotoImpl implements _Photo {
 
   @override
   final UniqueId id;
+  @override
+  final UniqueId userId;
   @override
   final Uri url;
   @override
@@ -185,7 +201,7 @@ class _$PhotoImpl implements _Photo {
 
   @override
   String toString() {
-    return 'Photo(id: $id, url: $url, createdAt: $createdAt, updatedAt: $updatedAt, filter: $filter, deletedAt: $deletedAt)';
+    return 'Photo(id: $id, userId: $userId, url: $url, createdAt: $createdAt, updatedAt: $updatedAt, filter: $filter, deletedAt: $deletedAt)';
   }
 
   @override
@@ -194,6 +210,7 @@ class _$PhotoImpl implements _Photo {
         (other.runtimeType == runtimeType &&
             other is _$PhotoImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
@@ -206,7 +223,7 @@ class _$PhotoImpl implements _Photo {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, url, createdAt, updatedAt, filter, deletedAt);
+      runtimeType, id, userId, url, createdAt, updatedAt, filter, deletedAt);
 
   /// Create a copy of Photo
   /// with the given fields replaced by the non-null parameter values.
@@ -220,6 +237,7 @@ class _$PhotoImpl implements _Photo {
 abstract class _Photo implements Photo {
   const factory _Photo(
       {required final UniqueId id,
+      required final UniqueId userId,
       required final Uri url,
       required final DateTime createdAt,
       required final DateTime updatedAt,
@@ -228,6 +246,8 @@ abstract class _Photo implements Photo {
 
   @override
   UniqueId get id;
+  @override
+  UniqueId get userId;
   @override
   Uri get url;
   @override

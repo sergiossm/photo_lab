@@ -1,13 +1,8 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:photo_lab/src/application/authentication/providers.dart';
 import 'package:photo_lab/src/application/warmup/providers.dart';
-import 'package:photo_lab/src/presentation/authentication/authentication_form_type.dart';
-import 'package:photo_lab/src/presentation/routing/params/authentication_params.dart';
-import 'package:photo_lab/src/presentation/routing/routes/routes.dart';
+import 'package:photo_lab/src/presentation/shared/extensions/build_context_extensions.dart';
 import 'package:photo_lab/src/presentation/shared/extensions/l10n_extensions.dart';
 import 'package:ui_kit/ui_kit.dart';
 
@@ -46,8 +41,7 @@ class LandingPage extends StatelessWidget {
                     ),
                     Text(
                       context.loc.appDescription,
-                      style: context.textStyle.titleLarge
-                          .copyWith(color: context.color.onSurface),
+                      style: context.textStyle.titleLarge.copyWith(color: context.color.onSurface),
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -65,20 +59,20 @@ class LandingPage extends StatelessWidget {
                       text: context.loc.signUp,
                       expand: true,
                       onPressed: () async {
-                        unawaited(
-                          context.pushNamed(
-                            Routes.authSignInSignUp.name,
-                            extra: AuthenticationParams(
-                              formType: AuthenticationFormType.signUp,
-                            ),
-                          ),
-                        );
+                        context.showSnackBar(context.loc.comingSoon);
+                        // unawaited(
+                        //   context.pushNamed(
+                        //     Routes.authSignInSignUp.name,
+                        //     extra: AuthenticationParams(
+                        //       formType: AuthenticationFormType.signUp,
+                        //     ),
+                        //   ),
+                        // );
                       },
                     ),
                     AppSpacing.vertical.s5,
                     Consumer(
-                      builder:
-                          (BuildContext context, WidgetRef ref, Widget? child) {
+                      builder: (BuildContext context, WidgetRef ref, Widget? child) {
                         return Button(
                           text: context.loc.continueWithGoogle,
                           type: ButtonType.tonal,
@@ -89,14 +83,10 @@ class LandingPage extends StatelessWidget {
                           ),
                           expand: true,
                           onPressed: () async {
-                            (await ref
-                                    .read(authenticationServiceProvider)
-                                    .signInWithGoogle())
-                                .fold(
+                            (await ref.read(authenticationServiceProvider).signInWithGoogle()).fold(
                               (failure) {
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  AppSnackBar.error(text: failure)
-                                      .build(context),
+                                  AppSnackBar.error(text: failure).build(context),
                                 );
                               },
                               (_) {
@@ -113,14 +103,16 @@ class LandingPage extends StatelessWidget {
                       type: ButtonType.text,
                       expand: true,
                       onPressed: () async {
-                        unawaited(
-                          context.pushNamed(
-                            Routes.authSignInSignUp.name,
-                            extra: AuthenticationParams(
-                              formType: AuthenticationFormType.signIn,
-                            ),
-                          ),
-                        );
+                        context.showSnackBar(context.loc.comingSoon);
+
+                        // unawaited(
+                        //   context.pushNamed(
+                        //     Routes.authSignInSignUp.name,
+                        //     extra: AuthenticationParams(
+                        //       formType: AuthenticationFormType.signIn,
+                        //     ),
+                        //   ),
+                        // );
                       },
                     ),
                   ],

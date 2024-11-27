@@ -9,6 +9,7 @@ part of 'photo_dto.dart';
 _$PhotoDtoImpl _$$PhotoDtoImplFromJson(Map<String, dynamic> json) =>
     _$PhotoDtoImpl(
       id: json['id'] as String,
+      userId: json['userId'] as String,
       url: json['url'] as String,
       createdAt: const FirestoreTimestampConverter()
           .fromJson(json['createdAt'] as Timestamp),
@@ -23,11 +24,12 @@ _$PhotoDtoImpl _$$PhotoDtoImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$PhotoDtoImplToJson(_$PhotoDtoImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'userId': instance.userId,
       'url': instance.url,
       'createdAt':
           const FirestoreTimestampConverter().toJson(instance.createdAt),
       'updatedAt':
           const FirestoreTimestampConverter().toJson(instance.updatedAt),
-      'filter': instance.filter,
+      'filter': instance.filter.toJson(),
       'deletedAt': instance.deletedAt?.toIso8601String(),
     };

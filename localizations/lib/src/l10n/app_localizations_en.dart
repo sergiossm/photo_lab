@@ -59,4 +59,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aiFilters => 'AI Filters';
+
+  @override
+  String get imageSaved => 'Image successfully saved to your Gallery';
+
+  @override
+  String get comingSoon => 'Coming Soon';
 }

@@ -71,5 +71,13 @@
     "aiFilters": "AI Filters",
     "@aiFilters": {
         "description": "The AI filters text"
+    },
+    "imageSaved": "Image successfully saved to your Gallery",
+    "@imageSaved": {
+        "description": "The image saved message"
+    },
+    "comingSoon": "Coming Soon",
+    "@comingSoon": {
+        "description": "The coming soon text"
     }
 }

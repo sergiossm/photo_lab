@@ -64,5 +64,7 @@
 		<string>$(PRODUCT_NAME) uses camera for taking photos</string>
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>$(PRODUCT_NAME) uses photo library for selecting photos</string>
+		<key>NSPhotoLibraryAddUsageDescription</key>
+		<string>$(PRODUCT_NAME) uses photo library for saving photos</string>
 	</dict>
 </plist>

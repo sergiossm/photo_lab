@@ -36,10 +36,7 @@ class PhotosPage extends StatelessWidget {
                   child: _ImportFrom(),
                 ),
                 AppSpacing.vertical.s8,
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: AppSizes.s5),
-                  child: _MyEdits(),
-                ),
+                const _MyEdits(),
               ],
             ),
           ),

@@ -9,6 +9,7 @@ part 'photo.freezed.dart';
 class Photo with _$Photo implements IEntity {
   const factory Photo({
     required UniqueId id,
+    required UniqueId userId,
     required Uri url,
     required DateTime createdAt,
     required DateTime updatedAt,
