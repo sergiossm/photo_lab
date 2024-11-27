@@ -200,6 +200,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'AI Filters'**
   String get aiFilters;
+
+  /// The image saved message
+  ///
+  /// In en, this message translates to:
+  /// **'Image successfully saved to your Gallery'**
+  String get imageSaved;
+
+  /// The coming soon text
+  ///
+  /// In en, this message translates to:
+  /// **'Coming Soon'**
+  String get comingSoon;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

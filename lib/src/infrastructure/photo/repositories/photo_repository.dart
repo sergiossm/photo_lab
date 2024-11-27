@@ -27,4 +27,14 @@ class PhotoRepository implements IPhotoRepository {
               },
             ),
           );
+
+  @override
+  Future<Either<Failure, Unit>> savePhoto(Photo photo) async {
+    try {
+      await _remoteDataSource.upsert(photo.toDto());
+      return right(unit);
+    } catch (_) {
+      return left(const Failure('Error saving photo'));
+    }
+  }
 }

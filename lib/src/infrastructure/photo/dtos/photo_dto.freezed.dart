@@ -21,6 +21,7 @@ PhotoDto _$PhotoDtoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PhotoDto {
   String get id => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
   @FirestoreTimestampConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
@@ -46,6 +47,7 @@ abstract class $PhotoDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
+      String userId,
       String url,
       @FirestoreTimestampConverter() DateTime createdAt,
       @FirestoreTimestampConverter() DateTime updatedAt,
@@ -71,6 +73,7 @@ class _$PhotoDtoCopyWithImpl<$Res, $Val extends PhotoDto>
   @override
   $Res call({
     Object? id = null,
+    Object? userId = null,
     Object? url = null,
     Object? createdAt = null,
     Object? updatedAt = null,
@@ -81,6 +84,10 @@ class _$PhotoDtoCopyWithImpl<$Res, $Val extends PhotoDto>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String,
       url: null == url
           ? _value.url
@@ -126,6 +133,7 @@ abstract class _$$PhotoDtoImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
+      String userId,
       String url,
       @FirestoreTimestampConverter() DateTime createdAt,
       @FirestoreTimestampConverter() DateTime updatedAt,
@@ -150,6 +158,7 @@ class __$$PhotoDtoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? userId = null,
     Object? url = null,
     Object? createdAt = null,
     Object? updatedAt = null,
@@ -160,6 +169,10 @@ class __$$PhotoDtoImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String,
       url: null == url
           ? _value.url
@@ -190,6 +203,7 @@ class __$$PhotoDtoImplCopyWithImpl<$Res>
 class _$PhotoDtoImpl extends _PhotoDto {
   const _$PhotoDtoImpl(
       {required this.id,
+      required this.userId,
       required this.url,
       @FirestoreTimestampConverter() required this.createdAt,
       @FirestoreTimestampConverter() required this.updatedAt,
@@ -202,6 +216,8 @@ class _$PhotoDtoImpl extends _PhotoDto {
 
   @override
   final String id;
+  @override
+  final String userId;
   @override
   final String url;
   @override
@@ -217,7 +233,7 @@ class _$PhotoDtoImpl extends _PhotoDto {
 
   @override
   String toString() {
-    return 'PhotoDto(id: $id, url: $url, createdAt: $createdAt, updatedAt: $updatedAt, filter: $filter, deletedAt: $deletedAt)';
+    return 'PhotoDto(id: $id, userId: $userId, url: $url, createdAt: $createdAt, updatedAt: $updatedAt, filter: $filter, deletedAt: $deletedAt)';
   }
 
   @override
@@ -226,6 +242,7 @@ class _$PhotoDtoImpl extends _PhotoDto {
         (other.runtimeType == runtimeType &&
             other is _$PhotoDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
@@ -239,7 +256,7 @@ class _$PhotoDtoImpl extends _PhotoDto {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, url, createdAt, updatedAt, filter, deletedAt);
+      runtimeType, id, userId, url, createdAt, updatedAt, filter, deletedAt);
 
   /// Create a copy of PhotoDto
   /// with the given fields replaced by the non-null parameter values.
@@ -260,6 +277,7 @@ class _$PhotoDtoImpl extends _PhotoDto {
 abstract class _PhotoDto extends PhotoDto {
   const factory _PhotoDto(
       {required final String id,
+      required final String userId,
       required final String url,
       @FirestoreTimestampConverter() required final DateTime createdAt,
       @FirestoreTimestampConverter() required final DateTime updatedAt,
@@ -272,6 +290,8 @@ abstract class _PhotoDto extends PhotoDto {
 
   @override
   String get id;
+  @override
+  String get userId;
   @override
   String get url;
   @override

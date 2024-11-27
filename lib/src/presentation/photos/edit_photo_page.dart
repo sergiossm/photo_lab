@@ -1,4 +1,8 @@
+import 'dart:typed_data';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -6,6 +10,7 @@ import 'package:photo_lab/src/application/photo/providers.dart';
 import 'package:photo_lab/src/domain/photo/entities/filter.dart';
 import 'package:photo_lab/src/domain/photo/entities/photo.dart';
 import 'package:photo_lab/src/domain/photo/events/edit_events.dart';
+import 'package:photo_lab/src/presentation/shared/extensions/build_context_extensions.dart';
 import 'package:photo_lab/src/presentation/shared/extensions/l10n_extensions.dart';
 import 'package:ui_kit/ui_kit.dart';
 
@@ -28,11 +33,7 @@ class EditPhotoPage extends HookConsumerWidget {
     // Apply the selected filter to the photo
     useEffect(
       () {
-        // If the photo already has a filter applied, don't include it in the undo stack
-        // if (photo?.filter != null) {
-        // } else {
         ref.read(editHistoryServiceProvider).applyFilter(selectedFilter.value);
-        // }
         return null;
       },
       [selectedFilter.value],
@@ -75,6 +76,8 @@ class EditPhotoPage extends HookConsumerWidget {
       },
       [subscription],
     );
+
+    final photoGlobalKey = useMemoized(GlobalKey.new, const []);
 
     return Scaffold(
       backgroundColor: context.color.onSecondary,
@@ -125,7 +128,22 @@ class EditPhotoPage extends HookConsumerWidget {
             size: ButtonSize.small,
             borderRadius: AppRadius.circular.s3,
             text: context.loc.save,
-            onPressed: () async {},
+            onPressed: selectedFilter.value == null
+                ? null
+                : () async {
+                    final bytes = await _capturePng(photoGlobalKey);
+
+                    (await ref.read(photosServiceProvider).saveImageFromBytes(
+                              editedImageBytes: bytes,
+                              filter: selectedFilter.value!,
+                              photo: photo,
+                              filePath: filePath,
+                            ))
+                        .fold(
+                      (l) => context.showSnackBar(l, isError: true),
+                      (r) => context.showSnackBar(context.loc.imageSaved),
+                    );
+                  },
           ),
           AppSpacing.horizontal.s4,
         ],
@@ -134,15 +152,21 @@ class EditPhotoPage extends HookConsumerWidget {
         child: () {
           final parameters = selectedFilter.value?.parameters.getOrElse([]) ?? [];
           final colorFilter = parameters.isEmpty ? null : ColorFilter.matrix(parameters);
+          late final Widget? child;
 
           if (photo != null) {
             final url = photo!.url.toString();
-            return ColorFilteredImage.network(url: url, colorFilter: colorFilter);
+            child = ColorFilteredImage.network(url: url, colorFilter: colorFilter);
           } else if (filePath != null) {
-            return ColorFilteredImage.file(filePath: filePath, colorFilter: colorFilter);
+            child = ColorFilteredImage.file(filePath: filePath, colorFilter: colorFilter);
           } else {
             return const SizedBox.shrink();
           }
+
+          return RepaintBoundary(
+            key: photoGlobalKey,
+            child: child,
+          );
         }(),
       ),
       bottomNavigationBar: _Filters(
@@ -151,5 +175,12 @@ class EditPhotoPage extends HookConsumerWidget {
         selectedFilter: selectedFilter,
       ),
     );
+  }
+
+  Future<Uint8List> _capturePng(GlobalKey globalKey) async {
+    final boundary = globalKey.currentContext!.findRenderObject()! as RenderRepaintBoundary;
+    final image = await boundary.toImage();
+    final byteData = await image.toByteData(format: ImageByteFormat.png);
+    return byteData!.buffer.asUint8List();
   }
 }

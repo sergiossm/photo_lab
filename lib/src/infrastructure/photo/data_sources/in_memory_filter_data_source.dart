@@ -90,4 +90,9 @@ class InMemoryFilterDataSource implements ILocalDataSource<FilterDto> {
   Future<FilterDto?> get(dynamic id) async {
     return _filters.firstWhere((filter) => filter.type == id);
   }
+
+  @override
+  Future<void> put(FilterDto dto) {
+    throw UnimplementedError();
+  }
 }

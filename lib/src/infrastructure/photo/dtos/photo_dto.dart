@@ -13,6 +13,7 @@ part 'photo_dto.g.dart';
 class PhotoDto with _$PhotoDto implements IDto {
   const factory PhotoDto({
     required String id,
+    required String userId,
     required String url,
     @FirestoreTimestampConverter() required DateTime createdAt,
     @FirestoreTimestampConverter() required DateTime updatedAt,
@@ -28,10 +29,25 @@ class PhotoDto with _$PhotoDto implements IDto {
   Photo toDomain() {
     return Photo(
       id: UniqueId.fromUniqueString(id),
+      userId: UniqueId.fromUniqueString(userId),
       url: Uri.parse(url),
       createdAt: createdAt,
       updatedAt: updatedAt,
       filter: filter.toDomain(),
+      deletedAt: deletedAt,
+    );
+  }
+}
+
+extension PhotoX on Photo {
+  PhotoDto toDto() {
+    return PhotoDto(
+      id: id.getOrCrash(),
+      userId: userId.getOrCrash(),
+      url: url.toString(),
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+      filter: filter.toDto(),
       deletedAt: deletedAt,
     );
   }

@@ -29,3 +29,12 @@ class FilterDto with _$FilterDto implements IDto {
     );
   }
 }
+
+extension FilterX on Filter {
+  FilterDto toDto() {
+    return FilterDto(
+      type: type.toDto(),
+      parameters: parameters.getOrCrash(),
+    );
+  }
+}
