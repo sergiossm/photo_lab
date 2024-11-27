@@ -10,6 +10,7 @@ A production-ready Flutter application demonstrating best practices in mobile ap
 - [Environment Setup and Configuration](#environment-setup-and-configuration)
 - [Key Technical Decisions](#key-technical-decisions)
 - [Feature Overview and Future Improvements](#feature-overview-and-future-improvements)
+- [Working App](#working-app)
 
 ---
 
@@ -271,4 +272,9 @@ Preload data for a smooth user experience. See the [WarmupService](/lib/src/appl
 - <input disabled type="checkbox"> **Firebase Cloud Functions**: Use Firebase Cloud Functions to ensure secure and efficient backend processing.
 - <input disabled type="checkbox"> **Firebase Analytics**: Integrate Firebase Analytics to track user engagement.
 - <input disabled type="checkbox"> **Sentry**: Implement error tracking with Sentry for better issue resolution.
+
+---
+
+## Working App
+https://github.com/user-attachments/assets/29368b78-3e48-4b7d-8fdb-629815975e1b
 
