@@ -13,4 +13,5 @@ class IconAssets {
   static const IconData empty = FontAwesomeIcons.ban;
   static const IconData undo = FontAwesomeIcons.arrowRotateLeft;
   static const IconData redo = FontAwesomeIcons.arrowRotateRight;
+  static const IconData user = FontAwesomeIcons.circleUser;
 }

@@ -79,5 +79,13 @@
     "comingSoon": "Coming Soon",
     "@comingSoon": {
         "description": "The coming soon text"
+    },
+    "profile": "Profile",
+    "@profile": {
+        "description": "The profile text"
+    },
+    "signOut": "Sign out",
+    "@signOut": {
+        "description": "The sign out text"
     }
 }

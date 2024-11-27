@@ -22,8 +22,7 @@ class UserDto with _$UserDto implements IDto {
 
   const UserDto._();
 
-  factory UserDto.fromJson(Map<String, dynamic> json) =>
-      _$UserDtoFromJson(json);
+  factory UserDto.fromJson(Map<String, dynamic> json) => _$UserDtoFromJson(json);
 
   @override
   User toDomain() {
@@ -42,6 +41,7 @@ extension UserX on User {
   UserDto toDto() {
     return UserDto(
       id: id.getOrCrash(),
+      displayName: displayName,
       emailAddress: emailAddress.getOrCrash(),
       createdAt: createdAt,
       updatedAt: updatedAt,

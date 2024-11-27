@@ -37,8 +37,13 @@ class AuthenticationFacade implements IAuthenticationFacade {
   }
 
   @override
-  Stream<Option<AuthenticationUser>> authStateChanges() =>
-      _remoteDataSource.authStateChanges().map((authUser) {
+  Stream<Option<AuthenticationUser>> authStateChanges() => _remoteDataSource.authStateChanges().map((authUser) {
         return optionOf(authUser?.toDomain());
       });
+
+  @override
+  Future<Unit> signOut() async {
+    await _remoteDataSource.signOut();
+    return unit;
+  }
 }

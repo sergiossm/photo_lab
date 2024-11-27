@@ -5,6 +5,7 @@ enum ButtonType {
   filled,
   tonal,
   text,
+  textDestructive,
   iconFilled,
   iconTonal,
 }
@@ -260,14 +261,6 @@ class _CustomFilledButton extends StatelessWidget {
             ),
             padding: removePadding ? const WidgetStatePropertyAll(horizontalPadding) : null,
             textStyle: WidgetStatePropertyAll(textStyle),
-            backgroundColor: WidgetStateProperty.resolveWith<Color?>(
-              (states) {
-                if (states.contains(WidgetState.disabled)) {
-                  return context.color.onSecondary.withOpacity(.1);
-                }
-                return null;
-              },
-            ),
             foregroundColor: WidgetStateProperty.resolveWith<Color?>(
               (states) {
                 if (states.contains(WidgetState.disabled)) {
@@ -279,7 +272,36 @@ class _CustomFilledButton extends StatelessWidget {
           ),
           child: child,
         ),
-      // TODO: Handle this case.
+      ButtonType.textDestructive => TextButton(
+          onPressed: onPressed,
+          style: ButtonStyle(
+            shape: borderRadius == null
+                ? null
+                : WidgetStateProperty.resolveWith<OutlinedBorder?>(
+                    (states) {
+                      return RoundedRectangleBorder(
+                        borderRadius: borderRadius!,
+                      );
+                    },
+                  ),
+            overlayColor: WidgetStateProperty.resolveWith<Color?>(
+              (states) {
+                return context.color.error.withOpacity(.05);
+              },
+            ),
+            padding: removePadding ? const WidgetStatePropertyAll(horizontalPadding) : null,
+            textStyle: WidgetStatePropertyAll(textStyle),
+            foregroundColor: WidgetStateProperty.resolveWith<Color?>(
+              (states) {
+                if (states.contains(WidgetState.disabled)) {
+                  return context.color.error.withOpacity(.2);
+                }
+                return context.color.error.withOpacity(.87);
+              },
+            ),
+          ),
+          child: child,
+        ),
       ButtonType.iconFilled => throw UnimplementedError(),
       ButtonType.iconTonal => FilledButton(
           onPressed: onPressed,

@@ -83,7 +83,9 @@ class _ImportFrom extends HookConsumerWidget {
                   size: AppSizes.s6,
                 ),
                 text: context.loc.files,
-                onPressed: () async {},
+                onPressed: () async {
+                  context.showSnackBar(context.loc.comingSoon);
+                },
               ),
             ),
             AppSpacing.horizontal.s3,

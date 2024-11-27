@@ -61,6 +61,10 @@ class AppTheme {
           color: colorScheme.onSurface,
         ),
       ),
+      dividerTheme: DividerThemeData(
+        color: colorScheme.onSurface.withOpacity(.1),
+        thickness: 1,
+      ),
       scaffoldBackgroundColor: colorScheme.surface,
       canvasColor: colorScheme.surface,
       cardColor: colorScheme.surface,

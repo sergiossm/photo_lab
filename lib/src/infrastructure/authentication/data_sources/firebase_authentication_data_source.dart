@@ -5,8 +5,7 @@ import 'package:photo_lab/src/domain/authentication/data_sources/i_authenticatio
 import 'package:photo_lab/src/domain/authentication/dtos/i_authentication_user_dto.dart';
 import 'package:photo_lab/src/infrastructure/authentication/dtos/authentication_user_dto.dart';
 
-class FirebaseAuthenticationDataSource
-    implements IAuthenticationRemoteDataSource {
+class FirebaseAuthenticationDataSource implements IAuthenticationRemoteDataSource {
   final firebase.FirebaseAuth _firebaseAuth = firebase.FirebaseAuth.instance;
   final _googleSignIn = GoogleSignIn(
     scopes: <String>[
@@ -30,8 +29,7 @@ class FirebaseAuthenticationDataSource
     );
 
     // Once signed in, return the AuthenticationUserDto
-    final user =
-        (await FirebaseAuth.instance.signInWithCredential(credential)).user;
+    final user = (await FirebaseAuth.instance.signInWithCredential(credential)).user;
     final id = user?.uid;
     final email = user?.email;
     final displayName = user?.displayName;
@@ -60,5 +58,11 @@ class FirebaseAuthenticationDataSource
       if (user == null) return null;
       return AuthenticationUserDto.fromFirebaseUser(user);
     });
+  }
+
+  @override
+  Future<void> signOut() async {
+    await _googleSignIn.disconnect();
+    await _firebaseAuth.signOut();
   }
 }

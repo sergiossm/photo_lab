@@ -6,4 +6,5 @@ abstract class IAuthenticationFacade {
   Future<Either<Failure, Option<AuthenticationUser>>> signInWithGoogle();
   Option<AuthenticationUser> getSignedInUser();
   Stream<Option<AuthenticationUser>> authStateChanges();
+  Future<Unit> signOut();
 }

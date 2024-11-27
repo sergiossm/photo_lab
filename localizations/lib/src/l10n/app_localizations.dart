@@ -212,6 +212,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Coming Soon'**
   String get comingSoon;
+
+  /// The profile text
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile;
+
+  /// The sign out text
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get signOut;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

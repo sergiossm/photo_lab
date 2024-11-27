@@ -35,4 +35,8 @@ class AuthenticationService {
       },
     );
   }
+
+  Future<void> signOut() async {
+    await _authenticationFacade.signOut();
+  }
 }

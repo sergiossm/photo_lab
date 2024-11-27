@@ -4,4 +4,5 @@ abstract class IAuthenticationRemoteDataSource {
   Future<IAuthenticationUserDto?> signInWithGoogle();
   IAuthenticationUserDto? getSignedInUser();
   Stream<IAuthenticationUserDto?> authStateChanges();
+  Future<void> signOut();
 }

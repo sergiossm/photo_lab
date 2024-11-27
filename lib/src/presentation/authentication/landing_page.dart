@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:photo_lab/src/application/authentication/providers.dart';
 import 'package:photo_lab/src/application/warmup/providers.dart';
+import 'package:photo_lab/src/presentation/routing/routes/routes.dart';
 import 'package:photo_lab/src/presentation/shared/extensions/build_context_extensions.dart';
 import 'package:photo_lab/src/presentation/shared/extensions/l10n_extensions.dart';
 import 'package:ui_kit/ui_kit.dart';
 
-class LandingPage extends StatelessWidget {
+class LandingPage extends HookConsumerWidget {
   const LandingPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -90,7 +92,13 @@ class LandingPage extends StatelessWidget {
                                 );
                               },
                               (_) {
+                                // Warm up the app before navigating to the home page
                                 ref.read(appWarmupServiceProvider).warmUp();
+
+                                // Navigate to the home page
+                                WidgetsBinding.instance.addPostFrameCallback((_) {
+                                  context.goNamed(Routes.homePhotos.name);
+                                });
                               },
                             );
                           },
