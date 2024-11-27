@@ -1,7 +1,9 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:photo_lab/src/domain/authentication/data_sources/i_authentication_remote_data_source.dart';
-import 'package:photo_lab/src/domain/authentication/facades/i_authentication_service.dart';
+import 'package:photo_lab/src/domain/authentication/entities/authentication_user.dart';
+import 'package:photo_lab/src/domain/authentication/facades/i_authentication_facade.dart';
 import 'package:photo_lab/src/domain/shared/failures/failure.dart';
+import 'package:photo_lab/src/domain/shared/value_objects/email_address.dart';
 import 'package:photo_lab/src/domain/shared/value_objects/unique_id.dart';
 
 class AuthenticationFacade implements IAuthenticationFacade {
@@ -12,42 +14,36 @@ class AuthenticationFacade implements IAuthenticationFacade {
   final IAuthenticationRemoteDataSource _remoteDataSource;
 
   @override
-  Future<Either<Failure, UniqueId>> signInWithEmailAndPassword(
-    String email,
-    String password,
-  ) async {
+  Future<Either<Failure, Option<AuthenticationUser>>> signInWithGoogle() async {
     try {
-      final result =
-          await _remoteDataSource.signInWithEmailAndPassword(email, password);
-      return right(UniqueId.fromUniqueString(result));
+      final authUser = await _remoteDataSource.signInWithGoogle();
+      if (authUser == null) return right(none());
+
+      final user = AuthenticationUser(
+        id: UniqueId.fromUniqueString(authUser.id),
+        emailAddress: EmailAddress(authUser.email),
+        photoUrl: Uri.parse(authUser.photoUrl ?? ''),
+        displayName: authUser.displayName,
+      );
+      return right(optionOf(user));
     } catch (_) {
-      return left(Failure('Error signing in user with email $email'));
+      return left(const Failure('Error signing in user with Google'));
     }
   }
 
   @override
-  Stream<Option<UniqueId>> authStateChanges() => _remoteDataSource
-      .authStateChanges()
-      .map(
-        (userId) =>
-            optionOf(userId == null ? null : UniqueId.fromUniqueString(userId)),
-      );
-
-  @override
-  Option<UniqueId> getSignedInUserId() {
-    final id = _remoteDataSource.getSignedInUser();
-    return optionOf(id == null ? null : UniqueId.fromUniqueString(id));
+  Option<AuthenticationUser> getSignedInUser() {
+    return optionOf(_remoteDataSource.getSignedInUser()?.toDomain());
   }
 
   @override
-  Future<Either<Failure, Unit>> sendPasswordResetEmail(String email) {
-    // TODO: implement sendPasswordResetEmail
-    throw UnimplementedError();
-  }
+  Stream<Option<AuthenticationUser>> authStateChanges() => _remoteDataSource.authStateChanges().map((authUser) {
+        return optionOf(authUser?.toDomain());
+      });
 
   @override
-  Future<Either<Failure, Unit>> signOut() async {
-    // TODO: implement signOut
-    throw UnimplementedError();
+  Future<Unit> signOut() async {
+    await _remoteDataSource.signOut();
+    return unit;
   }
 }

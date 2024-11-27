@@ -8,9 +8,11 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  cached_network_image: ^3.4.1
   carousel_slider: ^5.0.0
   flutter:
     sdk: flutter
+  font_awesome_flutter: ^10.8.0
   google_fonts: ^6.2.1
 
 dev_dependencies:
@@ -19,3 +21,5 @@ dev_dependencies:
   very_good_analysis:
 
 flutter:
+  assets:
+    - assets/images/

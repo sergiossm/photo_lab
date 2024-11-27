@@ -98,6 +98,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Photo Lab'**
   String get appTitle;
+
+  /// The description of the application
+  ///
+  /// In en, this message translates to:
+  /// **'A photo editing app'**
+  String get appDescription;
+
+  /// The continue with Google button text
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Google'**
+  String get continueWithGoogle;
+
+  /// The log in button text
+  ///
+  /// In en, this message translates to:
+  /// **'Log in'**
+  String get logIn;
+
+  /// The sign up button text
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up'**
+  String get signUp;
+
+  /// The photos tab text
+  ///
+  /// In en, this message translates to:
+  /// **'Photos'**
+  String get photos;
+
+  /// The settings tab text
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// The import from text
+  ///
+  /// In en, this message translates to:
+  /// **'Import from'**
+  String get importFrom;
+
+  /// The camera text
+  ///
+  /// In en, this message translates to:
+  /// **'Camera'**
+  String get camera;
+
+  /// The files text
+  ///
+  /// In en, this message translates to:
+  /// **'Files'**
+  String get files;
+
+  /// The my edits text
+  ///
+  /// In en, this message translates to:
+  /// **'My Edits'**
+  String get myEdits;
+
+  /// The save button text
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// The grayscale filter text
+  ///
+  /// In en, this message translates to:
+  /// **'Grayscale'**
+  String get grayscale;
+
+  /// The sepia filter text
+  ///
+  /// In en, this message translates to:
+  /// **'Sepia'**
+  String get sepia;
+
+  /// The invert filter text
+  ///
+  /// In en, this message translates to:
+  /// **'Invert'**
+  String get invert;
+
+  /// The none filter text
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get none;
+
+  /// The presets text
+  ///
+  /// In en, this message translates to:
+  /// **'Presets'**
+  String get presets;
+
+  /// The AI filters text
+  ///
+  /// In en, this message translates to:
+  /// **'AI Filters'**
+  String get aiFilters;
+
+  /// The image saved message
+  ///
+  /// In en, this message translates to:
+  /// **'Image successfully saved to your Gallery'**
+  String get imageSaved;
+
+  /// The coming soon text
+  ///
+  /// In en, this message translates to:
+  /// **'Coming Soon'**
+  String get comingSoon;
+
+  /// The profile text
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile;
+
+  /// The sign out text
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get signOut;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -3,5 +3,89 @@
     "appTitle": "Photo Lab",
     "@appTitle": {
         "description": "The title of the application"
+    },
+    "appDescription": "A photo editing app",
+    "@appDescription": {
+        "description": "The description of the application"
+    },
+    "continueWithGoogle": "Continue with Google",
+    "@continueWithGoogle": {
+        "description": "The continue with Google button text"
+    },
+    "logIn": "Log in",
+    "@logIn": {
+        "description": "The log in button text"
+    },
+    "signUp": "Sign up",
+    "@signUp": {
+        "description": "The sign up button text"
+    },
+    "photos": "Photos",
+    "@photos": {
+        "description": "The photos tab text"
+    },
+    "settings": "Settings",
+    "@settings": {
+        "description": "The settings tab text"
+    },
+    "importFrom": "Import from",
+    "@importFrom": {
+        "description": "The import from text"
+    },
+    "camera": "Camera",
+    "@camera": {
+        "description": "The camera text"
+    },
+    "files": "Files",
+    "@files": {
+        "description": "The files text"
+    },
+    "myEdits": "My Edits",
+    "@myEdits": {
+        "description": "The my edits text"
+    },
+    "save": "Save",
+    "@save": {
+        "description": "The save button text"
+    },
+    "grayscale": "Grayscale",
+    "@grayscale": {
+        "description": "The grayscale filter text"
+    },
+    "sepia": "Sepia",
+    "@sepia": {
+        "description": "The sepia filter text"
+    },
+    "invert": "Invert",
+    "@invert": {
+        "description": "The invert filter text"
+    },
+    "none": "None",
+    "@none": {
+        "description": "The none filter text"
+    },
+    "presets": "Presets",
+    "@presets": {
+        "description": "The presets text"
+    },
+    "aiFilters": "AI Filters",
+    "@aiFilters": {
+        "description": "The AI filters text"
+    },
+    "imageSaved": "Image successfully saved to your Gallery",
+    "@imageSaved": {
+        "description": "The image saved message"
+    },
+    "comingSoon": "Coming Soon",
+    "@comingSoon": {
+        "description": "The coming soon text"
+    },
+    "profile": "Profile",
+    "@profile": {
+        "description": "The profile text"
+    },
+    "signOut": "Sign out",
+    "@signOut": {
+        "description": "The sign out text"
     }
 }

@@ -16,13 +16,13 @@ class AppWarmupWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(appWarmupNotifierProvider);
+    final state = ref.watch(appWarmupControllerProvider);
     return state.when(
       loading: () => const _Loading(),
       error: (error, stackTrace) => _Error(
         message: error.toString(),
         onRetry: () async {
-          await ref.read(appWarmupNotifierProvider.notifier).retry();
+          await ref.read(appWarmupControllerProvider.notifier).retry();
         },
       ),
       data: (_) => onLoaded(context),

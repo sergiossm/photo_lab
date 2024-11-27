@@ -1,10 +1,15 @@
-import 'package:photo_lab/src/presentation/routing/routes/auth_routes.dart';
+import 'package:photo_lab/src/presentation/routing/routes/authentication_routes.dart';
+import 'package:photo_lab/src/presentation/routing/routes/photos_routes.dart';
+import 'package:photo_lab/src/presentation/routing/routes/settings_routes.dart';
 import 'package:photo_lab/src/presentation/routing/routes/splash_routes.dart';
 
 enum Routes {
-  splash(SplashRoutes.splash),
-  authenticationLanding(AuthRoutes.landing),
-  authSignInSignUp(AuthRoutes.signInSignUp);
+  splash(SplashRoutes.base),
+  authenticationLanding(AuthenticationRoutes.landing),
+  authSignInSignUp(AuthenticationRoutes.signInSignUp),
+  homePhotos(PhotosRoutes.base),
+  homePhotosEdit(PhotosRoutes.edit),
+  homeSettings(SettingsRoutes.base);
 
   const Routes(this.path);
 

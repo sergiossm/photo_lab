@@ -50,7 +50,7 @@ class LightColorScheme extends AppThemeColorScheme {
           onPrimary: const Color(0xFFFFFFFF),
           secondary: const Color(0xFF03DAC6),
           onSecondary: const Color(0xFF000000),
-          error: const Color(0xFFB00020),
+          error: const Color(0xFFFF0033),
           onError: const Color(0xFFFFFFFF),
           surface: const Color(0xFFFFFFFF),
           onSurface: const Color(0xFF000000),

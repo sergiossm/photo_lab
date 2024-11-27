@@ -1,7 +1,8 @@
+import 'package:photo_lab/src/domain/authentication/dtos/i_authentication_user_dto.dart';
+
 abstract class IAuthenticationRemoteDataSource {
-  Future<String> signInWithEmailAndPassword(String email, String password);
-  Future<String> signUpWithEmailAndPassword(String email, String password);
-  Stream<String?> authStateChanges();
-  String? getSignedInUser();
+  Future<IAuthenticationUserDto?> signInWithGoogle();
+  IAuthenticationUserDto? getSignedInUser();
+  Stream<IAuthenticationUserDto?> authStateChanges();
   Future<void> signOut();
 }

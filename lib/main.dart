@@ -32,7 +32,7 @@ void main() async {
   );
 
   // Warms up the application
-  await container.read(appWarmupNotifierProvider.notifier).warmUp();
+  container.read(appWarmupControllerProvider.notifier).warmUp();
 
   // Run the app
   runApp(

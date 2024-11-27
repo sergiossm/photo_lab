@@ -53,10 +53,17 @@ class AppTheme {
       primaryTextTheme: textStyle,
       appBarTheme: baseThemeData.appBarTheme.copyWith(
         color: colorScheme.surface,
-        titleTextStyle: textStyle.headlineMedium,
+        centerTitle: false,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        titleTextStyle: textStyle.displaySmall,
         iconTheme: baseThemeData.iconTheme.copyWith(
           color: colorScheme.onSurface,
         ),
+      ),
+      dividerTheme: DividerThemeData(
+        color: colorScheme.onSurface.withOpacity(.1),
+        thickness: 1,
       ),
       scaffoldBackgroundColor: colorScheme.surface,
       canvasColor: colorScheme.surface,
@@ -109,8 +116,7 @@ class ThemeProvider extends InheritedWidget {
   AppTextTheme get textStyle => appTheme.textStyle;
   AppThemeColorScheme get color => appTheme.color;
 
-  static ThemeProvider of(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<ThemeProvider>()!;
+  static ThemeProvider of(BuildContext context) => context.dependOnInheritedWidgetOfExactType<ThemeProvider>()!;
 
   @override
   bool updateShouldNotify(covariant ThemeProvider oldWidget) =>
